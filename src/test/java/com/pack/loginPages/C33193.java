@@ -350,7 +350,7 @@ public class C33193 extends TC_BaseClass {
 		}
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
 		WebElement save = wait1
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='save'")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", save);
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
 		WebElement ok = wait2
