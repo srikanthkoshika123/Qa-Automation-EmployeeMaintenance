@@ -83,7 +83,7 @@ public class DoubleClick extends TC_BaseClass{
 	        }
 	        return result;
 	}
-	public void clickEmptyCell() throws InterruptedException {
+	 /*public void clickEmptyCell() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		 WebElement addShift = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Add Availability']"))); 
 		 ((JavascriptExecutor)driver).executeScript("arguments[0].click();", addShift);
@@ -104,5 +104,5 @@ public class DoubleClick extends TC_BaseClass{
 		 ((JavascriptExecutor)driver).executeScript("arguments[0].click();", clickAdd);
 		 
 		
-	}
+	}*/
 }

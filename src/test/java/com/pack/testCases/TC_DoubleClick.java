@@ -21,7 +21,7 @@ public class TC_DoubleClick extends TC_BaseClass{
 	   DoubleClick doubleclick=new DoubleClick(driver);
 	   doubleclick.switchFrame();
 	   doubleclick.selectEmployee();
-	  // doubleclick.clickJobType();
+	   doubleclick.clickJobType();
 	   //doubleclick.clickEmptyCell();
 	   
 	}
