@@ -1,6 +1,7 @@
 package com.pack.loginPages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,7 @@ public class C27648 extends TC_BaseClass{
 	WebElement frame;
 	@FindBy(xpath = "//header/div[1]/div[1]/div[1]/button[1]")
 	WebElement unifocus;
-	@FindBy(xpath = "//div[@class='ant-tabs-tab-active ant-tabs-tab']//div//i[@aria-label='icon: close']//[name()='svg']//[name()='path' and contains(@d,'M563.8 512')]")
+	@FindBy(xpath = "//div[@class='ant-tabs-tab-active ant-tabs-tab']//div//i[@aria-label='icon: close']")
 	WebElement close;
 	@FindBy(xpath = "//span[text()='Setup']")
 	WebElement setup;
@@ -60,8 +61,12 @@ public class C27648 extends TC_BaseClass{
 		String un = unifocus.getText();
 		System.out.println(un);
 		Assert.assertEquals("UniFocus", un);
-		setup.click();
-		employee.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement setup = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Setup']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", setup);
+		WebDriverWait wait2 = new WebDriverWait(driver, 40);
+		WebElement employee = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Employee']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employee);
 	}
 	public void Certifications() {
 		certifications.click();
@@ -85,7 +90,9 @@ public class C27648 extends TC_BaseClass{
 	}
 	public void EmployeeClasses() {
 		clickUnifocus();
-		ec.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement employeeClasses = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Employee Classes']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeClasses);
 		driver.switchTo().frame(frame);
 		
 		WebDriverWait wait= new WebDriverWait(driver, 120);
@@ -94,11 +101,11 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(addbutton);
 		Assert.assertEquals("Add Row",addbutton);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement n= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
-	    String name = n.getText();
-	    System.out.println(name);
-		Assert.assertEquals("Name",name);
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement name= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
+	    String nameEmp = name.getText();
+	    System.out.println(nameEmp);
+		Assert.assertEquals("Name",nameEmp);
 		
 		driver.switchTo().defaultContent();
         close.click();
@@ -106,7 +113,9 @@ public class C27648 extends TC_BaseClass{
 	}
 	public void EmployeeFieldOverrides() {
 		clickUnifocus();
-		efo.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement employeeFieldOverrides = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Employee Field Overrides']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeFieldOverrides);
 		driver.switchTo().frame(frame);
 		
 		WebDriverWait wait= new WebDriverWait(driver, 120);
@@ -115,35 +124,36 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(standfields);
 		Assert.assertEquals("Standard Fields",standfields);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement fn= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Field Name']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement fn= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Field Name']")));
 	    String fieldname = fn.getText();
 	    System.out.println( fieldname);
 		Assert.assertEquals("Field Name", fieldname);
 		
 		driver.switchTo().defaultContent();
-		WebElement close=driver.findElement(By.xpath("//div[@class='ant-tabs-tab-active ant-tabs-tab']//div//i[@aria-label='icon: close']//[name()='svg']//[name()='path' and contains(@d,'M563.8 512')]"));
 		close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Employee Field Overrides']")).getText());
 	}
 	public void EmployeeSets() {
 		clickUnifocus();
-		es.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement employeeSets = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Employee Sets']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeSets);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
-		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='uf-border-panel-left']//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//button[1]//[name()='svg']//[name()='path' and contains(@fill,'currentCol')]")));
+		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'uf-border-panel-left')]//div[contains(@class,'uf-border-panel-top')]//button[1]")));
 	    String addbutton = addb.getText();
 		Assert.assertEquals(true,addb.isDisplayed());
 		System.out.println("add button is displayed");
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement delb= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='uf-border-panel-left']//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//button[2]")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement delb= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='uf-border-panel-left']//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//button[2]")));
 	    String delbutton = delb.getText();
 		Assert.assertEquals(true,delb.isDisplayed());
 		System.out.println("delete button is displayed");
 		
-		WebDriverWait wait2= new WebDriverWait(driver, 120);
-		WebElement es= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Employee Sets']")));
+		WebDriverWait wait3= new WebDriverWait(driver, 120);
+		WebElement es= wait3.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Employee Sets']")));
 	    String empsets = es.getText();
 	    System.out.println( empsets);
 		Assert.assertEquals("Employee Sets", empsets);
@@ -152,9 +162,11 @@ public class C27648 extends TC_BaseClass{
         close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Employee Sets']")).getText());
 	}
-	public void EmployeeUserMaps() {
+	public void employeeUserMaps() {
 		clickUnifocus();
-		eum.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement employeeUserMaps = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Employee User Maps']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeUserMaps);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
 		WebElement m= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Mapped']")));
@@ -162,8 +174,8 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(mapped);
 		Assert.assertEquals("Mapped",mapped);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement s= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Select']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement s= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Select']")));
 	    String select = s.getText();
 	    System.out.println( select);
 		Assert.assertEquals("Select", select);
@@ -172,9 +184,11 @@ public class C27648 extends TC_BaseClass{
         close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Employee User Maps']")).getText());
 	}
-	public void EmployeeWorkClasses() {
+	public void employeeWorkClasses() {
 		clickUnifocus();
-		ewc.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement employeeWorkClasses = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Employee Work Classes']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeWorkClasses);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
 		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Row']")));
@@ -182,8 +196,8 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(addbutton);
 		Assert.assertEquals("Add Row",addbutton);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement n= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement n= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
 	    String name = n.getText();
 	    System.out.println( name);
 		Assert.assertEquals("Name", name);
@@ -192,9 +206,11 @@ public class C27648 extends TC_BaseClass{
         close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Employee Work Classes']")).getText());
 	}
-	public void LocalTaxes() {
+	public void localTaxes() {
 		clickUnifocus();
-		lt.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement localTaxes = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Local Taxes']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", localTaxes);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
 		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Row']")));
@@ -202,8 +218,8 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(addbutton);
 		Assert.assertEquals("Add Row",addbutton);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement n= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement n= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
 	    String name = n.getText();
 	    System.out.println( name);
 		Assert.assertEquals("Name", name);
@@ -212,18 +228,20 @@ public class C27648 extends TC_BaseClass{
         close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Local Taxes']")).getText());
 	}
-	public void SalaryDistributions() {
+	public void salaryDistributions() {
 		clickUnifocus();
-		sd.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement salaryDistributions = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Salary Distributions']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", salaryDistributions);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
-		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='uf-border-panel-left']//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//button[1]//[name()='svg']//[name()='path' and contains(@fill,'currentCol')]")));
+		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='uf-tri-area-inner-left']//button[1]")));
 	    String addbutton = addb.getText();
 		Assert.assertEquals(true,addb.isDisplayed());
 		System.out.println("add button is displayed");
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement d= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Details']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement d= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Details']")));
 	    String details = d.getText();
 	    System.out.println(details);
 		Assert.assertEquals("Details",details);
@@ -234,7 +252,9 @@ public class C27648 extends TC_BaseClass{
 	}
 	public void ScheduleGroups() {
 		clickUnifocus();
-		sg.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement employeeClasses = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Schedule Groups']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeClasses);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
 		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Row']")));
@@ -242,8 +262,8 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(addbutton);
 		Assert.assertEquals("Add Row",addbutton);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement n= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement n= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
 	    String name = n.getText();
 	    System.out.println( name);
 		Assert.assertEquals("Name",name);
@@ -252,9 +272,11 @@ public class C27648 extends TC_BaseClass{
         close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Schedule Groups']")).getText());
 	}
-	public void States() {
+	public void states() {
 		clickUnifocus();
-		states.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement states = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='States']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", states);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
 		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Row']")));
@@ -262,8 +284,8 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(addbutton);
 		Assert.assertEquals("Add Row",addbutton);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement n= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement n= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
 	    String name = n.getText();
 	    System.out.println( name);
 		Assert.assertEquals("Name", name);
@@ -272,9 +294,11 @@ public class C27648 extends TC_BaseClass{
         close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='States']")).getText());
 	}
-	public void StatusChangeReasons() {
+	public void statusChangeReasons() {
 		clickUnifocus();
-		scr.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement statusChangeReasons = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Status Change Reasons']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", statusChangeReasons);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
 		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Row']")));
@@ -282,8 +306,8 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(addbutton);
 		Assert.assertEquals("Add Row",addbutton);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement n= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement n= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
 	    String name = n.getText();
 	    System.out.println( name);
 		Assert.assertEquals("Name", name);
@@ -292,9 +316,11 @@ public class C27648 extends TC_BaseClass{
         close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Status Change Reasons']")).getText());
 	}
-	public void TaxTypes() {
+	public void taxTypes() {
 		clickUnifocus();
-		tt.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement taxTypes = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Tax Types']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", taxTypes);
 		driver.switchTo().frame(frame);
 		WebDriverWait wait= new WebDriverWait(driver, 120);
 		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Row']")));
@@ -302,8 +328,8 @@ public class C27648 extends TC_BaseClass{
 	    System.out.println(addbutton);
 		Assert.assertEquals("Add Row",addbutton);
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement n= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement n= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
 	    String name = n.getText();
 	    System.out.println( name);
 		Assert.assertEquals("Name", name);
@@ -312,19 +338,21 @@ public class C27648 extends TC_BaseClass{
         close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Tax Types']")).getText());		
 	}
-	public void TimeOffTypes() {
+	public void timeOffTypes() {
 		clickUnifocus();
-		tot.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement timeOffTypes = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='Time Off Types']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", timeOffTypes);
 		driver.switchTo().frame(frame);
 		
 		WebDriverWait wait= new WebDriverWait(driver, 120);
-		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='uf-border-panel-left']//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//button[1]//[name()='svg']//[name()='path' and contains(@fill,'currentCol')]")));
+		WebElement addb= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='uf-border-panel-left']//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//button[1]")));
 	    String addbutton = addb.getText();
 		Assert.assertEquals(true,addb.isDisplayed());
 		System.out.println("add button is displayed");
 		
-		WebDriverWait wait1= new WebDriverWait(driver, 120);
-		WebElement d= wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Details']")));
+		WebDriverWait wait2= new WebDriverWait(driver, 120);
+		WebElement d= wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Details']")));
 	    String details = d.getText();
 	    System.out.println(details);
 		Assert.assertEquals("Details", details);

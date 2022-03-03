@@ -17,15 +17,15 @@ public class TC_C27648 extends TC_BaseClass{
 		setup3.EmployeeClasses();
 		setup3.EmployeeFieldOverrides();
 		setup3.EmployeeSets();
-		setup3.EmployeeUserMaps();
-		setup3.EmployeeWorkClasses();
-		setup3.LocalTaxes();
-		setup3.SalaryDistributions();
+		setup3.employeeUserMaps();
+		setup3.employeeWorkClasses();
+		setup3.localTaxes();
+		setup3.salaryDistributions();
 		setup3.ScheduleGroups();
-		setup3.States();
-		setup3.StatusChangeReasons();
-		setup3.TaxTypes();
-		setup3.TimeOffTypes();
+		setup3.states();
+		setup3.statusChangeReasons();
+		setup3.taxTypes();
+		setup3.timeOffTypes();
 }}
 
 

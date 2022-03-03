@@ -26,6 +26,16 @@ public class TC_C33193 extends TC_BaseClass{
 		certification.selectCertifications();
 		certification.clickDropDown();
 		certification.selectIssueDate();
+		certification.clickAutocert1Ellipsis();
+		certification.clickAutocert2();
+		certification.clickAutocert2Ellipsis();
+		certification.clickAdd();
+		certification.clickUnifocus();
+		certification.retryingFindClick();
+		certification.selectFilterJobButton();
+		certification.selectAutoAssignmnt1();
+		certification.doubleClickEmptyCell();
+		certification.selectStartTime();
 
 }
 }
