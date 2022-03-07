@@ -34,23 +34,23 @@ public class C33193 extends TC_BaseClass {
 	WebElement unifocus;
 	@FindBy(xpath = "//div[@row-index='0']/div[@aria-colindex='1']")
 	WebElement empName;
-	@FindBy(xpath = "//div[contains(@class,'ant-col ant-col-9')]//div[1]//div[2]//div[1]//span[1]//span[1]//input[1]")
+	@FindBy(xpath = "//div[contains(@class,'ant-row')]//div[1]//div[1]//div[1]//div[2]//div[1]//span[1]//span[1]//input[1]")
 	WebElement startTime;
-	@FindBy(xpath = "//div[contains(@class,'ant-col ant-col-9')]//div[2]//div[2]//div[1]//span[1]//span[1]//input[1]")
+	@FindBy(xpath = "//div[contains(@class,'ant-row')]//div[2]//div[1]//div[1]//div[2]//div[1]//span[1]//span[1]//input[1]")
 	WebElement endTime;
 
 	public void switchFrame() throws InterruptedException {
 		driver.switchTo().frame(frame);
 	}
 
-	public void selectEmployee() throws InterruptedException {
+	public void selectEmployee(String empId) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 180);
 		WebElement searchEmp = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//input[contains(@placeholder,'Name or EmpID')]")));
 		Thread.sleep(8000);
 		// searchEmp.click();
 		searchEmp.clear();
-		searchEmp.sendKeys("Adam");
+		searchEmp.sendKeys(empId);
 		Thread.sleep(6000);
 		empName.click();
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
@@ -134,7 +134,7 @@ public class C33193 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", addNewCertification);
 	}
 
-	public void clickDropDown() throws InterruptedException {
+	public void clickDropDown(String autoCert1) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement certDropDown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//form[@class='ant-form ant-form-horizontal AddEditCertificationModal-module___AddEditCertificationModalForm___yuZDO']/div[1]/div[2]/div/div/div")));
@@ -143,7 +143,7 @@ public class C33193 extends TC_BaseClass {
 				"//ul[@class='ant-select-dropdown-menu  ant-select-dropdown-menu-root ant-select-dropdown-menu-vertical']/li"));
 
 		for (int i = 0; i <= allOptions.size() - 1; i++) {
-			if (allOptions.get(i).getText().contains("A")) {
+			if (allOptions.get(i).getText().contains(autoCert1)) {
 				Thread.sleep(2000);
 				allOptions.get(i).click();
 				break;
@@ -152,48 +152,62 @@ public class C33193 extends TC_BaseClass {
 		}
 	}
 
-	public void selectIssueDate() throws InterruptedException {
+	public void selectIssueDate(String issuedate,String startdate) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement issueDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
 				"//div[contains(@class,'ant-modal-body')]//div[2]//div[2]//div[1]//div[1]//div[1]//span[1]//span[1]//input[1]")));
 		issueDate.sendKeys(Keys.CONTROL + "a");
 		issueDate.sendKeys(Keys.DELETE);
-		issueDate.sendKeys("12/25/2021");
+		issueDate.sendKeys(issuedate);
 		Thread.sleep(2000);
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
 		WebElement startDate = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-				"//div[contains(@class,'ant-modal-root')]//div[3]//div[2]//div[1]//div[1]//div[1]//span[1]//span[1]//input[1]")));
+				"//div[contains(@class,'ant-modal-body')]//div[3]//div[2]//div[1]//div[1]//div[1]//span[1]//span[1]//input[1]")));
 		startDate.sendKeys(Keys.CONTROL + "a");
 		startDate.sendKeys(Keys.DELETE);
-		startDate.sendKeys("1/25/2022");
-		Thread.sleep(2000);
+		startDate.sendKeys(startdate);
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		WebElement add = wait2.until(ExpectedConditions
+		WebElement expireDate = wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+				"//div[contains(@class,'ant-modal-body')]//div[4]//div[2]//div[1]//div[1]//div[1]//span[1]//span[1]//input[1]")));
+		expireDate.sendKeys(Keys.CONTROL + "a");
+		expireDate.sendKeys(Keys.DELETE);
+		expireDate.sendKeys("4/7/2022");
+		Thread.sleep(4000);
+		WebDriverWait wait3 = new WebDriverWait(driver, 40);
+		WebElement add = wait3.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//button[contains(@class,'ant-btn ant-btn-primary')]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", add);
 
 	}
 
-	public void clickAutocert1Ellipsis() throws InterruptedException {
+	public void clickAutocert1Ellipsis(String expirationdate) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement autocert1Ellipsis = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"//button[@class='ant-btn ant-btn-sm']//*[name()='svg']//*[name()='path' and contains(@fill,'currentCol')]")));
+				"//div[@class='CertificationTab-module___CertificationCards___3QbNa']//div[1]//div[1]//div[1]//div[2]//button[1]")));
 		Thread.sleep(4000);
 		autocert1Ellipsis.click();
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
-		WebElement startDate = wait1.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//div[4]//div[2]//div[1]//div[1]//div[1]//span[1]//span[1]//input[1]")));
-		startDate.sendKeys(Keys.CONTROL + "a");
-		startDate.sendKeys(Keys.DELETE);
-		startDate.sendKeys("1/25/2022");
+		WebElement expirationDate = wait1.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//form/div[4]/div[2]/div/div/div/span/span/input")));
+		expirationDate.sendKeys(Keys.CONTROL + "a");
+		expirationDate.sendKeys(Keys.DELETE);
+		expirationDate.sendKeys(expirationdate);
+
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		WebElement update = wait2.until(ExpectedConditions
+		WebElement expirationDate1 = wait2.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//form/div[3]/div[2]/div/div/div/span/span/input")));
+		expirationDate1.sendKeys(Keys.CONTROL + "a");
+		expirationDate1.sendKeys(Keys.DELETE);
+		expirationDate1.sendKeys("2/7/2022");
+	
+		WebDriverWait wait3 = new WebDriverWait(driver, 40);
+		WebElement update = wait3.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//button[contains(@class,'ant-btn ant-btn-primary')]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", update);
 
 	}
 
-	public void clickAutocert2() throws InterruptedException {
+	public void clickAutocert2(String autoCert2) throws InterruptedException {
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
 		WebElement addNewCertification = wait2.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Add New Certification']")));
@@ -207,7 +221,7 @@ public class C33193 extends TC_BaseClass {
 
 		for (int i = 0; i <= allOptions.size() - 1; i++) {
 			Thread.sleep(2000);
-			if (allOptions.get(i).getText().contains("B")) {
+			if (allOptions.get(i).getText().contains(autoCert2)) {
 				Thread.sleep(2000);
 				allOptions.get(i).click();
 				break;
@@ -223,7 +237,7 @@ public class C33193 extends TC_BaseClass {
 	public void clickAutocert2Ellipsis() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement autocert1Ellipsis = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"//div[@class='CertificationTab-module___CertificationCards___3QbNa']//div[2]//div[1]//div[1]//div[2]//button[1]//*[name()='svg']")));
+				"//div[@class='ant-card CertificationCard-module___CertificationCard___XGy62 CertificationCard-module___CertificationCardExpired___1sCBN ant-card-bordered']//button[@type='button']")));
 		Thread.sleep(4000);
 		autocert1Ellipsis.click();
 
@@ -233,23 +247,40 @@ public class C33193 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", delete);
 		Thread.sleep(4000);
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		WebElement clickOk = wait2.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//button[contains(@class,'ant-btn ant-btn-primary')]")));
+		WebElement clickOk = wait2
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='ant-modal-body']//button[2]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickOk);
 		Thread.sleep(4000);
 	}
-
-	public void clickAdd() throws InterruptedException {
-		Thread.sleep(4000);
-		clickAutocert2();
-		Thread.sleep(4000);
+	public void addAutocert2(String autoCert2) throws InterruptedException {
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		WebElement add = wait2.until(ExpectedConditions
+		WebElement addNewCertification = wait2.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Add New Certification']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", addNewCertification);
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement certDropDown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//form[@class='ant-form ant-form-horizontal AddEditCertificationModal-module___AddEditCertificationModalForm___yuZDO']/div[1]/div[2]/div/div/div")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", certDropDown);
+		List<WebElement> allOptions = driver.findElements(By.xpath(
+				"//ul[@class='ant-select-dropdown-menu  ant-select-dropdown-menu-root ant-select-dropdown-menu-vertical']/li"));
+
+		for (int i = 0; i <= allOptions.size() - 1; i++) {
+			Thread.sleep(2000);
+			if (allOptions.get(i).getText().contains(autoCert2)) {
+				Thread.sleep(2000);
+				allOptions.get(i).click();
+				break;
+
+			}
+		}
+		WebDriverWait wait3 = new WebDriverWait(driver, 40);
+		WebElement add = wait3.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//button[contains(@class,'ant-btn ant-btn-primary')]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", add);
 	}
 
 	public void clickUnifocus() throws InterruptedException {
+
 		driver.switchTo().defaultContent();
 		WebElement close = driver.findElement(
 				By.xpath("//div[@class='ant-tabs-nav-container']//div[2]//div[1]//i[@aria-label='icon: close']"));
@@ -281,14 +312,6 @@ public class C33193 extends TC_BaseClass {
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				Actions action = new Actions(driver);
 				action.moveToElement(ele).build().perform();
-				driver.switchTo().activeElement();
-				WebElement das = driver.findElement(By.xpath("//li[text()='Filter by Job']"));
-				Thread.sleep(4000);
-				das.click();
-				WebDriverWait wait1 = new WebDriverWait(driver, 40);
-				WebElement element = wait1.until(ExpectedConditions.elementToBeClickable(By
-						.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: minus-square-o']")));
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -298,21 +321,31 @@ public class C33193 extends TC_BaseClass {
 		return result;
 	}
 
-	@SuppressWarnings("deprecation")
 	public void selectFilterJobButton() throws InterruptedException {
+		try {
+			driver.switchTo().activeElement();
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebElement das = driver.findElement(By.xpath("//li[text()='Filter by Job']"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", das);
+		} catch (Exception e) {
+		}
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement element = wait1.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: minus-square-o']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 		WebDriverWait wait = new WebDriverWait(driver, 180);
 		WebElement searchEmp = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//input[contains(@placeholder,'Find By Name')]")));
 		Thread.sleep(8000);
 		// searchEmp.click();
 		searchEmp.clear();
-		searchEmp.sendKeys("Auto Job2");
+		searchEmp.sendKeys("Auto Job1");
 		EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(driver);
 		eventFiringWebDriver.executeScript(
 				"document.querySelector('div[style=\"height: 85%; width: 100%; display: flex; flex-direction: column; overflow: auto; margin-top: 8px;\"]').scrollTop=1200");
 	}
 
-	public void selectAutoAssignmnt1() throws InterruptedException {
+	public void selectAutoAssignmnt1(String dates) throws InterruptedException {
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
 		WebElement autoJob1 = wait2.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//ul[@role='tree']/li[20]/ul/li/ul/li/ul/li[1]/span[2]/span[1]")));
@@ -321,17 +354,26 @@ public class C33193 extends TC_BaseClass {
 		WebElement ok = wait1
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", ok);
+		WebDriverWait wait6 = new WebDriverWait(driver, 40);
+		WebElement date = wait6.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//div[@class='unifocus-selectdropdown ant-select ant-select-enabled']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", date);
+		WebDriverWait wait7 = new WebDriverWait(driver, 40);
+		WebElement dateRange = wait7
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='"+dates+"']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateRange);
+		Thread.sleep(8000);
 	}
 
-	public boolean doubleClickEmptyCell() throws InterruptedException {
+	public boolean doubleClickEmptyCell(String doubleclick) throws InterruptedException {
 		boolean result = false;
 		int attempts = 0;
 		while (attempts < 2) {
 			try {
-				driver.switchTo().activeElement();
+				Thread.sleep(3000);
 				Actions action = new Actions(driver);
-				WebElement code = driver.findElement(By.xpath(
-						"//div[@class='ScheduleDayRenderer-module___Container___4hrfB ScheduleDayRenderer-module___SelectedDayColorBackground___3EPtY']//div[@class='ScheduleDayRenderer-module___ShiftStyle___1ce_v ScheduleDayRenderer-module___ExpandedDay___15Fhx']"));
+				WebElement code=driver.findElement(By.xpath(
+						"//*[@id=\"root\"]/div/section/section/main/div/div/section/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div["+doubleclick+"]/div/div/div[2]"));
 				action.moveToElement(code).doubleClick().build().perform();
 				result = true;
 				break;
@@ -342,10 +384,9 @@ public class C33193 extends TC_BaseClass {
 		return result;
 	}
 
-	public void selectStartTime() throws InterruptedException {
-		Thread.sleep(4000);
-		startTime.sendKeys("8:00AM");
-		endTime.sendKeys("4:00PM");
+	public void selectStartTime(String starttime,String endtime,String JobName) throws InterruptedException {
+		startTime.sendKeys(starttime);
+		endTime.sendKeys(endtime);
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement dropDown = wait.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//div[@id='job']//div[@class='ant-select-selection__rendered']")));
@@ -354,7 +395,7 @@ public class C33193 extends TC_BaseClass {
 				"//ul[@class='ant-select-dropdown-menu  ant-select-dropdown-menu-root ant-select-dropdown-menu-vertical']/li"));
 
 		for (int i = 0; i <= allOptions.size() - 1; i++) {
-			if (allOptions.get(i).getText().contains("Auto Job3")) {
+			if (allOptions.get(i).getText().contains(JobName)) {
 				Thread.sleep(2000);
 				allOptions.get(i).click();
 				break;
@@ -366,9 +407,10 @@ public class C33193 extends TC_BaseClass {
 				"//button[@class='ant-btn ShiftDetailsFooterSection-module___SaveButton___16cbP ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", save);
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		WebElement ok = wait2
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
+		WebElement ok = wait2.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//button[contains(@class,'ant-btn ant-btn-primary')]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", ok);
+		Thread.sleep(4000);
 	}
 
 }

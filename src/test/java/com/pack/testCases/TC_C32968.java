@@ -11,7 +11,7 @@ import com.pack.utils.XLUtils;
 import recordingTests.ScreenRecorderUtil;
 
 public class TC_C32968 extends TC_BaseClass{
-	@Test(dataProvider="Certification")
+	@Test(dataProvider="CertificationSetUp")
 	public void Updatecertification(String certfi1,String cert2,String div1,String dep1,String autoJob1,String job,String autoJob2,String jobCode,String autojob2,String cert,String autoJob,String job1,String autoJob3,String jobCode1,String autojob3,String cert1) throws Exception {
 		ScreenRecorderUtil.startRecord("C32968");
 		 driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
@@ -41,7 +41,7 @@ public class TC_C32968 extends TC_BaseClass{
 		 certification.doubleClickCertifiction1(cert1);
 		 certification.selectCheckBox1();
 	}
-	@DataProvider(name="Certification")
+	@DataProvider(name="CertificationSetUp")
 	   String [][] getData() throws IOException
 	   {
 		String path=System.getProperty("user.dir")+"/src/test/java/com/pack/testData/Certifications.xlsx";

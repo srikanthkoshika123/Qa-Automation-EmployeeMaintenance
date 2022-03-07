@@ -108,25 +108,20 @@ public class SchedularTest extends TC_BaseClass {
 		return result;
 	}
 	  public void robotClass() throws AWTException, InterruptedException {
+		  unifocus.click();
+			String un = unifocus.getText();
+			System.out.println(un);
+			Assert.assertEquals("UniFocus", un);
+			WebDriverWait wait = new WebDriverWait(driver, 40);
+			WebElement setup = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Labor']")));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", setup);
+
+			WebDriverWait wait1 = new WebDriverWait(driver, 40);
+			WebElement laborStructure = wait1
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Scheduling']")));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", laborStructure);
 		
-		  /*WebDriverWait wait = new WebDriverWait(driver, 120);
-			WebElement propertyDefault = wait
-					.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[1]/div[@aria-colindex='1']")));
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", propertyDefault);
-		  Robot rb = new Robot();
-		  rb.keyPress(KeyEvent.VK_CONTROL);
-		  rb.keyPress(KeyEvent.VK_F);
-		  
-		  StringSelection stringSelection = new StringSelection("Search String");
-		  Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		  clipboard.setContents(stringSelection, null);
-		  rb.keyPress(KeyEvent.VK_CONTROL);
-		  rb.keyPress(KeyEvent.VK_V);
-		  rb.keyRelease(KeyEvent.VK_CONTROL);
-		  rb.keyRelease(KeyEvent.VK_V);*/
-
-
-		  Thread.sleep(15000);
 
 	  }
 	  public boolean retryingFindClick() throws InterruptedException {
@@ -143,10 +138,6 @@ public class SchedularTest extends TC_BaseClass {
 					   ((JavascriptExecutor)driver).executeScript("arguments[0].click();", ele);	    
 					    Actions action = new Actions(driver);
 		       		    action.moveToElement(ele).build().perform();
-		       			driver.switchTo().activeElement();
-		 				WebElement das = driver.findElement(By.xpath("//li[text()='Filter by Job']"));
-		 				das.click();
-		 				Thread.sleep(4000);
 	                    result = true;
 	                    break;
 	            } catch(StaleElementReferenceException e) {
@@ -158,6 +149,14 @@ public class SchedularTest extends TC_BaseClass {
 	            }
 	        @SuppressWarnings("deprecation")
 	        public void selectDateRange() throws InterruptedException{
+	        	 try{
+		       			driver.switchTo().activeElement();
+		       		    WebDriverWait wait1 = new WebDriverWait(driver, 10);
+					   WebElement das = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//html/body/div[7]/div/div/ul/li[2]")));
+					   ((JavascriptExecutor)driver).executeScript("arguments[0].click();", das);
+		       		    }
+	                   catch(Exception e) {
+	                   }
 		       WebDriverWait wait = new WebDriverWait(driver, 40);
 			   WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: minus-square-o']"))); 
 			  ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);

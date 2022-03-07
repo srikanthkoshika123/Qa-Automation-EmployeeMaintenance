@@ -9,13 +9,13 @@ public class TC_SchedularTest extends TC_BaseClass{
 		public void schedularTest() throws  Exception {
 		 //ScreenRecorderUtil.startRecord("HomePage");
 		 SchedularTest schedularTest=new SchedularTest(driver);
-		 schedularTest.clickUnifocus();
-		 schedularTest.switchFrame();
-		 schedularTest.selectPropertyDefault();
-		 schedularTest.clickAdd();
-		 schedularTest.selectPropertyDefault1();
+		// schedularTest.clickUnifocus();
+		 //schedularTest.switchFrame();
+		 //schedularTest.selectPropertyDefault();
+		 //schedularTest.clickAdd();
+		 //schedularTest.selectPropertyDefault1();
 		 schedularTest.robotClass();
-		 //schedularTest.retryingFindClick();
-		// schedularTest.selectDateRange();
+		 schedularTest.retryingFindClick();
+		 schedularTest.selectDateRange();
 	 }
 }
