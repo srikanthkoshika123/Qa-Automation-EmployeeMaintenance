@@ -134,21 +134,22 @@ public class C28156 extends TC_BaseClass {
 		WebDriverWait wait3 = new WebDriverWait(driver, 40);
 		WebElement addStatus = wait3.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//button[contains(@class,'ant-btn ant-btn-primary')]")));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", addStatus);
-
+		Thread.sleep(4000);
+		addStatus.click();
 		WebDriverWait wait4 = new WebDriverWait(driver, 40);
 		WebElement expandFilter = wait4.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//button[@class='ant-btn EmployeeSidebar-module___filterButton___2_Aus ant-btn-primary ant-btn-circle ant-btn-icon-only']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", expandFilter);
-
+		Thread.sleep(6000);
 		WebDriverWait wait5 = new WebDriverWait(driver, 40);
 		WebElement employeeSet = wait5.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//div[@class='EmployeeSidebar-module___filterSelect___1xYYQ ant-select ant-select-enabled']//div[@class='ant-select-selection__rendered']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeSet);
-
+        
 		WebDriverWait wait6 = new WebDriverWait(driver, 40);
-		WebElement inactive = wait6
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='Inactive']")));
+		WebElement inactive = wait6.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//li[normalize-space()='Inactive']")));
+		Thread.sleep(6000);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", inactive);
 	}
 
@@ -171,6 +172,7 @@ public class C28156 extends TC_BaseClass {
 		WebDriverWait wait4 = new WebDriverWait(driver, 40);
 		WebElement employeeSet = wait4.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//div[@class='EmployeeSidebar-module___filterSelect___1xYYQ ant-select ant-select-enabled']//div[@class='ant-select-selection__rendered']")));
+		Thread.sleep(4000);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeSet);
 
 		WebDriverWait wait5 = new WebDriverWait(driver, 40);
@@ -182,6 +184,6 @@ public class C28156 extends TC_BaseClass {
 		WebElement Statu = wait6
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Status']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Statu);
-		Thread.sleep(9000);
+		Thread.sleep(6000);
 	}
 }

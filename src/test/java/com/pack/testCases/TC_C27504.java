@@ -18,6 +18,8 @@ public class TC_C27504 extends TC_BaseClass{
 	    tANDa.clickUnifocus();
 	    tANDa.clickReviewPayPeriod();
 	    tANDa.approveShifts();
+	    tANDa.retryingFindClick();
+	    tANDa.reviewTimeCard();
 	    tANDa.whoIsInOut();
 	    tANDa.clickAttendancePointsandEvents();
 	    tANDa.clickBenefits();

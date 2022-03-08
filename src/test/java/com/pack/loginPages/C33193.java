@@ -354,6 +354,7 @@ public class C33193 extends TC_BaseClass {
 		WebElement ok = wait1
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", ok);
+		Thread.sleep(8000);
 		WebDriverWait wait6 = new WebDriverWait(driver, 40);
 		WebElement date = wait6.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//div[@class='unifocus-selectdropdown ant-select ant-select-enabled']")));
@@ -362,7 +363,7 @@ public class C33193 extends TC_BaseClass {
 		WebElement dateRange = wait7
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='"+dates+"']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateRange);
-		Thread.sleep(8000);
+		
 	}
 
 	public boolean doubleClickEmptyCell(String doubleclick) throws InterruptedException {

@@ -3,8 +3,10 @@ package com.pack.loginPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,10 +41,9 @@ public class C27504 extends TC_BaseClass {
 		String un = unifocus.getText();
 		System.out.println(un);
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
-		WebElement tANDa = wait1
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='ant-menu-submenu-title']//span[text()='T&A']")));
+		WebElement tANDa = wait1.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//div[@class='ant-menu-submenu-title']//span[text()='T&A']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", tANDa);
-		tANDa.click();
 		String sc = tANDa.getText();
 		System.out.println(sc);
 		Assert.assertEquals("T&A", sc);
@@ -68,30 +69,64 @@ public class C27504 extends TC_BaseClass {
 		System.out.println(as);
 		Assert.assertEquals("Approve Shifts", as);
 		Thread.sleep(4000);
-		WebDriverWait wait1 = new WebDriverWait(driver, 40);
-		WebElement reviewPayPeriod = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"//div[@row-index='0']//div[@aria-colindex='1']//div[@class='input-cell-content'][normalize-space()='adam']")));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", reviewPayPeriod);
+	}
+
+	public boolean retryingFindClick() throws InterruptedException {
+		boolean result = false;
+		int attempts = 0;
+		while (attempts < 2) {
+			try {
+
+				WebDriverWait wait1 = new WebDriverWait(driver, 40);
+				WebElement reviewPayPeriod = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath(
+						"//*[@id='root']/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div/div[3]/div[1]/div[2]/div/div/div/div[2]/div[1]/div[3]/div[2]/div/div/div[1]/div[1]")));
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", reviewPayPeriod);
+				Thread.sleep(4000);
+				result = true;
+				break;
+			} catch (StaleElementReferenceException e) {
+			}
+			attempts++;
+		}
+		return result;
+	}
+
+	public void reviewTimeCard() {
+		driver.switchTo().defaultContent();
+		WebDriverWait wait3 = new WebDriverWait(driver, 40);
+		WebElement rpClose = wait3.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//*[@id=\"root\"]/div/div/section/div/div/div[1]/div[2]/div/div/div/div[1]/div[2]/div/i")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", rpClose);
+		driver.switchTo().frame(frame);
+		WebElement addShift = driver.findElement(By.xpath("//span[text()='Add Shift']"));
+		String add = addShift.getText();
+		System.out.println(add);
+		WebElement additionalDetails = driver.findElement(By.xpath("//div[@role='button']"));
+		String details = additionalDetails.getText();
+		System.out.println(details);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
 
 	public void whoIsInOut() throws InterruptedException {
+
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement whoIsInOut = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Who Is In/Out']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", whoIsInOut);
 		driver.switchTo().frame(frame);
-
-		/*WebElement Filter = driver.findElement(By.xpath(
-				"//span[@class='ant-input-search ant-input-affix-wrapper']//input[@placeholder='Filter by Name or Emp. Id']"));
+		/*
+		WebElement Filter = driver.findElement(By.xpath(
+				"//input[@placeholder='Filter by Name or Emp. Id']"));
 		String view = Filter.getText();
-		System.out.println(view);*/
-		WebElement asOf = driver.findElement(By.xpath("//div[contains(text(),'As of: 2/4/22 4:18 AM (CST)')]"));
-		String asof = asOf.getText();
-		System.out.println(asof);
-		Assert.assertEquals("As of: 2/4/22 4:18 AM (CST)", asof);
+		System.out.println(view);
+		
+		 * WebElement asOf = driver.findElement(By.
+		 * xpath("//div[contains(text(),'As of: 2/4/22 4:18 AM (CST)')]")); String asof
+		 * = asOf.getText(); System.out.println(asof);
+		 * Assert.assertEquals("As of: 2/4/22 4:18 AM (CST)", asof);
+		 */
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();
 		close.click();
@@ -100,22 +135,20 @@ public class C27504 extends TC_BaseClass {
 	public void clickAttendancePointsandEvents() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		WebElement attendancePointsandEvents = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Attendance Points and Events']")));
+		WebElement attendancePointsandEvents = wait.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Attendance Points and Events']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", attendancePointsandEvents);
 		driver.switchTo().frame(frame);
 
-		WebElement addpoint = driver
-				.findElement(By.xpath("//div[@class='AttendanceToolbar-module___buttonGroup___22W8J']//button[@type='button']"));
+		WebElement addpoint = driver.findElement(
+				By.xpath("//div[@class='AttendanceToolbar-module___buttonGroup___22W8J']//button[@type='button']"));
 		String add = addpoint.getText();
 		System.out.println(add);
-		WebElement  events= driver
-				.findElement(By.xpath("//span[normalize-space()='Events']"));
+		WebElement events = driver.findElement(By.xpath("//span[normalize-space()='Events']"));
 		String addEvent = events.getText();
 		System.out.println(addEvent);
-		WebElement calculateAttendance = driver
-				.findElement(By.xpath("//div[3]//div[1]//div[1]//span[1]//button[1]"));
-		String  calculate= calculateAttendance.getText();
+		WebElement calculateAttendance = driver.findElement(By.xpath("//div[3]//div[1]//div[1]//span[1]//button[1]"));
+		String calculate = calculateAttendance.getText();
 		System.out.println(calculate);
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();
@@ -125,17 +158,17 @@ public class C27504 extends TC_BaseClass {
 	public void clickBenefits() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		WebElement benefits = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Benefits']")));
+		WebElement benefits = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Benefits']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", benefits);
 		driver.switchTo().frame(frame);
 		WebElement employee = driver.findElement(By.xpath("//h3[@title='Employees']"));
-		String  em= employee.getText();
+		String em = employee.getText();
 		System.out.println(em);
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
+
 	public void clickEnterEarnings() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
@@ -144,19 +177,19 @@ public class C27504 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", enterEarnings);
 		driver.switchTo().frame(frame);
 		WebElement tipsDeclared = driver.findElement(By.xpath("//div[text()='T - Tips Declared (D)']"));
-		String  td= tipsDeclared.getText();
+		String td = tipsDeclared.getText();
 		System.out.println(td);
-		WebElement filters = driver
-				.findElement(By.xpath("//span[text()='Filters']"));
-		String  filter= filters.getText();
+		WebElement filters = driver.findElement(By.xpath("//span[text()='Filters']"));
+		String filter = filters.getText();
 		System.out.println(filter);
 		WebElement bulkEarnings = driver.findElement(By.xpath("//span[text()='Bulk Earnings']"));
-		String  be= bulkEarnings.getText();
+		String be = bulkEarnings.getText();
 		System.out.println(be);
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
+
 	public void clickHolidayPay() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
@@ -165,16 +198,16 @@ public class C27504 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", holidayPay);
 		driver.switchTo().frame(frame);
 		WebElement pay = driver.findElement(By.xpath("//h1[text()='Holiday Pay']"));
-		String  hp= pay.getText();
+		String hp = pay.getText();
 		System.out.println(hp);
-		WebElement earnings = driver
-				.findElement(By.xpath("//span[text()='Apply Earnings']"));
-		String  ae= earnings.getText();
+		WebElement earnings = driver.findElement(By.xpath("//span[text()='Apply Earnings']"));
+		String ae = earnings.getText();
 		System.out.println(ae);
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
+
 	public void clickPunchImageReview() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
@@ -183,16 +216,16 @@ public class C27504 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", punchImageReview);
 		driver.switchTo().frame(frame);
 		WebElement employees = driver.findElement(By.xpath("//h3[@title='Employees']"));
-		String  em= employees.getText();
+		String em = employees.getText();
 		System.out.println(em);
-		WebElement name = driver
-				.findElement(By.xpath("//span[normalize-space()='Name']"));
-		String  nameColumn= name.getText();
+		WebElement name = driver.findElement(By.xpath("//span[normalize-space()='Name']"));
+		String nameColumn = name.getText();
 		System.out.println(nameColumn);
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
+
 	public void clickApproveEarnings() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
@@ -201,7 +234,7 @@ public class C27504 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", approveEarnings);
 		driver.switchTo().frame(frame);
 		WebElement approve = driver.findElement(By.xpath("//span[normalize-space()='Approve All Earnings']"));
-		String  ae= approve.getText();
+		String ae = approve.getText();
 		System.out.println(ae);
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();
