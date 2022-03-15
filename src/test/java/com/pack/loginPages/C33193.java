@@ -298,6 +298,7 @@ public class C33193 extends TC_BaseClass {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Scheduling']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", scheduling);
 		driver.switchTo().frame(frame);
+		
 	}
 
 	public boolean retryingFindClick() throws InterruptedException {
@@ -354,16 +355,15 @@ public class C33193 extends TC_BaseClass {
 		WebElement ok = wait1
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", ok);
-		Thread.sleep(8000);
+		Thread.sleep(4000);
 		WebDriverWait wait6 = new WebDriverWait(driver, 40);
 		WebElement date = wait6.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//div[@class='unifocus-selectdropdown ant-select ant-select-enabled']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", date);
 		WebDriverWait wait7 = new WebDriverWait(driver, 40);
 		WebElement dateRange = wait7
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='"+dates+"']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='3/5/22 - 3/18/22']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateRange);
-		
 	}
 
 	public boolean doubleClickEmptyCell(String doubleclick) throws InterruptedException {

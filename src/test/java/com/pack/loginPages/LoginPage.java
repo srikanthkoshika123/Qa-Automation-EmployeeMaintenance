@@ -26,16 +26,8 @@ public class LoginPage extends TC_BaseClass {
 	WebElement partnerCode;
 	@FindBy(xpath = "//span[@class='x-button-label']")
 	WebElement next;
-	// @FindBy(xpath="//input[@id='ext-element-36'][@class='x-input-el x-form-field
-	// x-input-text']")
-	// WebElement txtName;
-	// @FindBy(xpath="//input[@class='x-input-el x-form-field x-input-password']")
-	// WebElement password;
 	@FindBy(xpath = "//div[@class='x-button x-button-no-icon x-button-primary-wide x-layout-box-item x-stretched']")
 	WebElement signin;
-
-	// @FindBy(xpath="//a[normalize-space()='RMS Modern']")
-	// WebElement rms;
 
 	public void setPartnerCode(String pc) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 120);
@@ -43,27 +35,34 @@ public class LoginPage extends TC_BaseClass {
 				.visibilityOfElementLocated(By.xpath("//input[@class='x-input-el x-form-field x-input-text']")));
 		partnerCode.sendKeys(pc);
 	}
+
 	public void clickNext() {
+		WebDriverWait wait2 = new WebDriverWait(driver, 40);
+		WebElement next = wait2
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='x-button-label']")));
 		next.click();
 	}
 
 	public void setUserName(String uname) {
 		WebDriverWait wait = new WebDriverWait(driver, 120);
-		WebElement txtName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Login ID']")));
+		WebElement txtName = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Login ID']")));
 		txtName.sendKeys(uname);
 	}
 
 	public void setPassWord(String pwd) {
 		WebDriverWait wait = new WebDriverWait(driver, 120);
-		WebElement password = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//input[@placeholder='Password']")));
+		WebElement password = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Password']")));
 		password.sendKeys(pwd);
 		Assert.assertEquals(true, password.isEnabled());
 		System.out.println(password.isEnabled());
 	}
 
 	public void clickSignIn() throws InterruptedException {
-		Thread.sleep(6000);
+		WebDriverWait wait2 = new WebDriverWait(driver, 40);
+		WebElement signin = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//div[@class='x-button x-button-no-icon x-button-primary-wide x-layout-box-item x-stretched']")));
 		signin.click();
 		System.out.println("signin clicked");
 		WebDriverWait wait1 = new WebDriverWait(driver, 120);

@@ -12,7 +12,7 @@ import com.pack.loginPages.C30317;
 import com.pack.utils.XLUtils;
 
 import recordingTests.ScreenRecorderUtil;
-
+@SuppressWarnings("deprecation")
 public class TC_C30317 extends TC_BaseClass{
 	@Test(dataProvider="JobTabData")
 	public void updateExistingEmployeeJobsTab(String empid,String employee,String jobName,String payType,String hourly,String wch,String ch,String annual,String se,String sar,String piece,String EmpId,String jobType,String payType2,String hourlyRate,String AnnualRate1,String seAnnualRate1,String pieceRate,String jobType1,String job,String jobName1,String payType1,String hourly1,String wch1,String ch1,String annual1,String se1,String sar1,String piece1,String jobs,String empName) throws Exception {

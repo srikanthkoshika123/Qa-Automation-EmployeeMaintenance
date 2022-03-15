@@ -19,6 +19,7 @@ import org.testng.Assert;
 
 import com.pack.testCases.TC_BaseClass;
 
+@SuppressWarnings("deprecation")
 public class C32852 extends TC_BaseClass {
 	WebDriver ldriver;
 
@@ -79,8 +80,8 @@ public class C32852 extends TC_BaseClass {
 		startTime.sendKeys(starttime);
 		endTime.sendKeys(endtime);
 		WebDriverWait wait3 = new WebDriverWait(driver, 40);
-		WebElement preferredOff = wait3.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//div[@id='type']/label[2]/span[1]")));
+		WebElement preferredOff = wait3
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='type']/label[2]/span[1]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", preferredOff);
 	}
 
@@ -149,8 +150,8 @@ public class C32852 extends TC_BaseClass {
 		startTime.sendKeys(starttime);
 		endTime.sendKeys(endtime);
 		WebDriverWait wait3 = new WebDriverWait(driver, 40);
-		WebElement preferredOff = wait3.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//div[@id='type']/label[1]/span[1]")));
+		WebElement preferredOff = wait3
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='type']/label[1]/span[1]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", preferredOff);
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
 		WebElement clickAdd = wait1
@@ -193,12 +194,12 @@ public class C32852 extends TC_BaseClass {
 		endTime.sendKeys(Keys.CONTROL + "a");
 		endTime.sendKeys(Keys.DELETE);
 		endTime.sendKeys(editEnd);
-       
+
 		WebDriverWait wait3 = new WebDriverWait(driver, 40);
-		WebElement preferredOff = wait3.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//div[@id='type']/label[2]/span[1]")));
+		WebElement preferredOff = wait3
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='type']/label[2]/span[1]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", preferredOff);
-		 Thread.sleep(4000);
+		Thread.sleep(4000);
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
 		WebElement clickAdd = wait1
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
@@ -231,15 +232,15 @@ public class C32852 extends TC_BaseClass {
 		startTime.sendKeys(starttime);
 		endTime.sendKeys(endtime);
 		WebDriverWait wait3 = new WebDriverWait(driver, 40);
-		WebElement AvailableToWork = wait3.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//div[@id='type']/label[3]/span[1]")));
+		WebElement AvailableToWork = wait3
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='type']/label[3]/span[1]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", AvailableToWork);
-		
+
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
 		WebElement clickAdd = wait1
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickAdd);
-		
+
 	}
 
 	public void clickUnifocus() throws InterruptedException {
@@ -267,7 +268,7 @@ public class C32852 extends TC_BaseClass {
 
 				WebDriverWait wait = new WebDriverWait(driver, 120);
 				WebElement ele = wait.until(ExpectedConditions
-						.elementToBeClickable(By.cssSelector("div > div >button.ant-dropdown-trigger:nth-child(2)"))); 
+						.elementToBeClickable(By.cssSelector("div > div >button.ant-dropdown-trigger:nth-child(2)")));
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				Actions action = new Actions(driver);
 				action.moveToElement(ele).build().perform();
@@ -285,20 +286,18 @@ public class C32852 extends TC_BaseClass {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	public void selectDateRange(String filterJob, String dynamicName) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: minus-square-o']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
-		WebElement element1 = wait.until(ExpectedConditions.elementToBeClickable(
+		WebElement element1 = wait1.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: arrows-alt']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element1);
 
-		@SuppressWarnings("deprecation")
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		WebElement element2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(filterJob)));
+		WebElement element2 = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(filterJob)));
 		Coordinates cor = ((Locatable) element2).getCoordinates();
 		cor.inViewPort();
 		Thread.sleep(1000);
@@ -312,8 +311,8 @@ public class C32852 extends TC_BaseClass {
 				By.xpath("//div[@class='unifocus-selectdropdown ant-select ant-select-enabled']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", date);
 		WebDriverWait wait7 = new WebDriverWait(driver, 40);
-		WebElement dateRange = wait7.until(
-				ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='1/8/22 - 1/21/22 *']")));
+		WebElement dateRange = wait7
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='3/5/22 - 3/18/22']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateRange);
 		WebDriverWait wait5 = new WebDriverWait(driver, 40);
 		WebElement element5 = wait5.until(ExpectedConditions.elementToBeClickable(By.xpath(
@@ -355,7 +354,7 @@ public class C32852 extends TC_BaseClass {
 
 	public void selectCheckBoxs1(String starttime, String endtime, String day5, String day6, String day7, String day8)
 			throws InterruptedException {
-		
+
 		startTime.sendKeys(starttime);
 		endTime.sendKeys(endtime);
 		List<WebElement> checkBoxes = driver.findElements(By.xpath("//div[@id='days']/label/span/input"));
@@ -458,13 +457,11 @@ public class C32852 extends TC_BaseClass {
 	}
 
 	public void clickEdit(String starttime, String endtime) throws InterruptedException {
-		
-		   WebDriverWait wait = new WebDriverWait(driver, 40); WebElement editShift =
-		   wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-		   "//section[@class='unifocus-section invisible']//section[1]//div[1]//div[1]//div[1]//div[1]//button[2]")));
-		   ((JavascriptExecutor)driver).executeScript("arguments[0].click();",
-		   editShift);
-		 
+
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement editShift = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//section[@class='unifocus-section invisible']//section[1]//div[1]//div[1]//div[1]//div[1]//button[2]")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", editShift);
 
 		startTime.sendKeys(Keys.CONTROL + "a");
 		startTime.sendKeys(Keys.DELETE);
@@ -504,8 +501,8 @@ public class C32852 extends TC_BaseClass {
 
 	public void clickDeleteSelectedShifts() throws InterruptedException {
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
-		WebElement delete = wait1.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//section[@class='unifocus-section invisible']//section[1]//div[1]//div[1]//div[1]//div[1]//button[3]")));
+		WebElement delete = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//section[@class='unifocus-section invisible']//section[1]//div[1]//div[1]//div[1]//div[1]//button[3]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", delete);
 
 		WebDriverWait wait3 = new WebDriverWait(driver, 40);
@@ -542,8 +539,8 @@ public class C32852 extends TC_BaseClass {
 
 	public void clickDelete() throws InterruptedException {
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
-		WebElement Delete = wait1
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Delete Availability']")));
+		WebElement Delete = wait1.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Delete Availability']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Delete);
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
 		WebElement ok = wait2
@@ -553,8 +550,8 @@ public class C32852 extends TC_BaseClass {
 
 	public void clickDeleteAllShifts() throws InterruptedException {
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
-		WebElement delete = wait1.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//section[@class='unifocus-section invisible']//section[1]//div[1]//div[1]//div[1]//div[1]//button[3]")));
+		WebElement delete = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//section[@class='unifocus-section invisible']//section[1]//div[1]//div[1]//div[1]//div[1]//button[3]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", delete);
 
 		WebDriverWait wait3 = new WebDriverWait(driver, 40);
@@ -566,8 +563,9 @@ public class C32852 extends TC_BaseClass {
 		WebElement clickOk = wait4
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickOk);
-		
+
 	}
+
 	public void clickRefreshButton() throws InterruptedException {
 		clickUnifocus();
 		driver.switchTo().defaultContent();
@@ -577,6 +575,6 @@ public class C32852 extends TC_BaseClass {
 				.visibilityOfElementLocated(By.xpath("//button[@class='ant-btn action-button ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", refresh);
 		Thread.sleep(40000);
-		
+
 	}
 }

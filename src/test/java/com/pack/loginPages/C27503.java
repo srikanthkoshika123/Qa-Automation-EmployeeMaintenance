@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -18,6 +20,7 @@ import org.testng.Assert;
 
 import com.pack.testCases.TC_BaseClass;
 
+@SuppressWarnings("deprecation")
 public class C27503 extends TC_BaseClass {
 	WebDriver ldriver;
 
@@ -49,18 +52,26 @@ public class C27503 extends TC_BaseClass {
 	WebElement timeLineScheduling;
 
 	public void clickUnifocus() {
-		unifocus.click();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement unifocus = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//header/div[1]/div[1]/div[1]/button[1]")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", unifocus);
 		String un = unifocus.getText();
 		System.out.println(un);
 		Assert.assertEquals("UniFocus", un);
-		labor.click();
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement labor = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Labor']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", labor);
 	}
 
 	public void clickEnterActualEnvironments() throws InterruptedException {
-		actuals.click();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement actuals = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Actuals']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", actuals);
+
 		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 80);
-		WebElement mn = wait.until(ExpectedConditions
+		WebDriverWait wait1 = new WebDriverWait(driver, 80);
+		WebElement mn = wait1.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='ant-timeline']/div[1]/div/div[2]/div/i")));
 		Actions a = new Actions(driver);
 		a.moveToElement(mn).click().build().perform();
@@ -69,42 +80,43 @@ public class C27503 extends TC_BaseClass {
 				"//ul[@class='ant-dropdown-menu ant-dropdown-menu-light ant-dropdown-menu-root ant-dropdown-menu-vertical']/li"));
 
 		for (int i = 0; i <= start.size() - 1; i++) {
-			if (start.get(i).getText().contains("Start")) {
+			if (start.get(i).getText().contains("Update")) {
+				Thread.sleep(4000);
 				start.get(i).click();
 				break;
-			} else if (start.get(i).getText().contains("Update")) {
+			} else if (start.get(i).getText().contains("start")) {
+				Thread.sleep(2000);
 				start.get(i).click();
 				break;
 			}
 		}
-		try {
-			driver.manage().timeouts().implicitlyWait(70, TimeUnit.SECONDS);
-			WebElement multipleKBIs = driver.findElement(By.xpath("//*[contains(text(), 'Multiple KBIs/Days')]"));
-			multipleKBIs.click();
-		} catch (NoSuchElementException e) {
-			System.out.println("nosuchelement");
-		}
+
 		driver.switchTo().defaultContent();
 		close.click();
 	}
 
 	public void clickEnterActualKBIs() throws InterruptedException {
+		clickUnifocus();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement actuals = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Actuals']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", actuals);
+
 		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 80);
-		WebElement mn = wait.until(ExpectedConditions
+		WebDriverWait wait1 = new WebDriverWait(driver, 80);
+		WebElement mn = wait1.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='ant-timeline']/div[4]/div/div[2]/div/i")));
 		Actions a = new Actions(driver);
 		a.moveToElement(mn).click().build().perform();
 		driver.switchTo().activeElement();
-		driver.switchTo().activeElement();
 		WebElement industries = driver.findElement(By.xpath("//div[4]/div/div/ul[@role='menu']"));
 		List<WebElement> start = industries.findElements(By.tagName("li"));
-
 		for (int i = 0; i <= start.size() - 1; i++) {
-			if (start.get(i).getText().contains("Start")) {
+			if (start.get(i).getText().contains("Update")) {
+				Thread.sleep(4000);
 				start.get(i).click();
 				break;
-			} else if (start.get(i).getText().contains("Update")) {
+			} else if (start.get(i).getText().contains("Start")) {
+				Thread.sleep(4000);
 				start.get(i).click();
 				break;
 			}
@@ -122,9 +134,14 @@ public class C27503 extends TC_BaseClass {
 	}
 
 	public void clickEnterEmployeeProductivity() throws InterruptedException {
+		clickUnifocus();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement actuals = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Actuals']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", actuals);
+
 		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 80);
-		WebElement mn = wait.until(ExpectedConditions
+		WebDriverWait wait1 = new WebDriverWait(driver, 80);
+		WebElement mn = wait1.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='ant-timeline']/div[5]/div/div[2]/div/i")));
 		Actions a = new Actions(driver);
 		Coordinates cor = ((Locatable) mn).getCoordinates();
@@ -136,9 +153,11 @@ public class C27503 extends TC_BaseClass {
 		List<WebElement> start = industries.findElements(By.tagName("li"));
 		for (int i = 0; i <= start.size() - 1; i++) {
 			if (start.get(i).getText().contains("Start")) {
+				Thread.sleep(4000);
 				start.get(i).click();
 				break;
 			} else if (start.get(i).getText().contains("Update")) {
+				Thread.sleep(4000);
 				start.get(i).click();
 				break;
 			}
@@ -157,9 +176,14 @@ public class C27503 extends TC_BaseClass {
 	}
 
 	public void clickEnterActualHours() throws InterruptedException {
+		clickUnifocus();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement actuals = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Actuals']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", actuals);
+
 		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 80);
-		WebElement mn = wait.until(ExpectedConditions
+		WebDriverWait wait1 = new WebDriverWait(driver, 80);
+		WebElement mn = wait1.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='ant-timeline']/div[8]/div/div[2]/div/i")));
 		Actions a = new Actions(driver);
 		Coordinates cor = ((Locatable) mn).getCoordinates();
@@ -171,9 +195,11 @@ public class C27503 extends TC_BaseClass {
 		List<WebElement> start = industries.findElements(By.tagName("li"));
 		for (int i = 0; i <= start.size() - 1; i++) {
 			if (start.get(i).getText().contains("Start")) {
+				Thread.sleep(4000);
 				start.get(i).click();
 				break;
 			} else if (start.get(i).getText().contains("Update")) {
+				Thread.sleep(4000);
 				start.get(i).click();
 				break;
 			}
@@ -195,39 +221,66 @@ public class C27503 extends TC_BaseClass {
 	}
 
 	public void clickPlanning() throws InterruptedException {
-		unifocus.click();
-		labor.click();
-		planning.click();
+		clickUnifocus();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement planning = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Planning']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", planning);
+
 		driver.switchTo().frame(frame);
-		WebElement quickView = driver.findElement(By.xpath("//span[normalize-space()='Quick View']"));
-		quickView.click();
-		WebElement listView = driver.findElement(By.xpath("//span[normalize-space()='List View']"));
-		listView.click();
-		WebDriverWait wait = new WebDriverWait(driver, 80);
-		WebElement EnterScheduledHours = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//ul[@class='ant-timeline']/div[13]/div/div[2]/div/i")));
-		Actions a = new Actions(driver);
-		Coordinates cor = ((Locatable) EnterScheduledHours).getCoordinates();
-		cor.inViewPort();
-		Thread.sleep(1000);
-		a.moveToElement(EnterScheduledHours).click().build().perform();
-		Thread.sleep(8000);
+		WebDriverWait wait1 = new WebDriverWait(driver, 40);
+		WebElement quickView = wait1
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Quick View']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", quickView);
+		WebDriverWait wait2 = new WebDriverWait(driver, 40);
+		WebElement listView = wait2
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='List View']")));
+		Thread.sleep(3000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", listView);
+
+	}
+
+	public boolean retryingFindClick() throws InterruptedException {
+		boolean result = false;
+		int attempts = 0;
+		while (attempts < 2) {
+			try {
+				WebDriverWait wait3 = new WebDriverWait(driver, 80);
+				WebElement EnterScheduledHours = wait3.until(ExpectedConditions
+						.visibilityOfElementLocated(By.xpath("//ul[@class='ant-timeline']/div[13]/div/div[2]/div/i")));
+				Actions a = new Actions(driver);
+				Coordinates cor = ((Locatable) EnterScheduledHours).getCoordinates();
+				cor.inViewPort();
+				Thread.sleep(1000);
+				a.moveToElement(EnterScheduledHours).click().build().perform();
+				Thread.sleep(3000);
+				result = true;
+				break;
+			} catch (StaleElementReferenceException e) {
+			}
+			attempts++;
+		}
+		return result;
 	}
 
 	public void clickForecastEnvironments() throws InterruptedException {
+		Actions a = new Actions(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 80);
 		WebElement mn = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//ul[@class='ant-timeline']/div[1]/div/div[2]/div/i")));
-		Actions a = new Actions(driver);
+		Coordinates cor = ((Locatable) mn).getCoordinates();
+		cor.inViewPort();
+		Thread.sleep(1000);
 		a.moveToElement(mn).click().build().perform();
 		driver.switchTo().activeElement();
 		WebElement industries = driver.findElement(By.xpath("//div[4]/div/div/ul[@role='menu']"));
 		List<WebElement> start = industries.findElements(By.tagName("li"));
 		for (int i = 0; i <= start.size() - 1; i++) {
 			if (start.get(i).getText().contains("Start")) {
+				Thread.sleep(2000);
 				start.get(i).click();
 				break;
 			} else if (start.get(i).getText().contains("Update")) {
+				Thread.sleep(2000);
 				start.get(i).click();
 				break;
 			}
@@ -235,37 +288,40 @@ public class C27503 extends TC_BaseClass {
 		try {
 			driver.switchTo().activeElement();
 			driver.manage().timeouts().implicitlyWait(70, TimeUnit.SECONDS);
-			WebElement multipleKBIs = driver.findElement(By.xpath("//span[normalize-space()='Multiple KBIs/Days']"));
-			multipleKBIs.click();
+			// WebElement multipleKBIs =
+			// driver.findElement(By.xpath("//span[normalize-space()='Multiple
+			// KBIs/Days']"));
+			// multipleKBIs.click();
 		}
 
 		catch (NoSuchElementException e) {
 			System.out.println("nosuchelement");
-
 		}
 		driver.switchTo().defaultContent();
+		Thread.sleep(4000);
 		close.click();
 	}
 
 	public void clickEnterPreWork() throws InterruptedException {
-		// planning.click();
-		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 80);
-		WebElement EnterPreWork = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		clickPlanning();
+		WebDriverWait wait1 = new WebDriverWait(driver, 80);
+		WebElement EnterPreWork = wait1.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//div[2]/div/div/ul[@class='ant-timeline']/div[2]/div/div[2]/div/i")));
 		Actions a = new Actions(driver);
 		a.moveToElement(EnterPreWork).click().build().perform();
 
 		driver.switchTo().activeElement();
-		WebElement industries = driver.findElement(By.cssSelector("//div[3]/div/div/ul[@role='menu']"));
+		WebElement industries = driver.findElement(By.xpath("//html/body/div[3]/div/div/ul"));
 
 		List<WebElement> start = industries.findElements(By.tagName("li"));
 
 		for (int i = 0; i <= start.size() - 1; i++) {
 			if (start.get(i).getText().contains("Start")) {
+				Thread.sleep(3000);
 				start.get(i).click();
 				break;
 			} else if (start.get(i).getText().contains("Update")) {
+				Thread.sleep(3000);
 				start.get(i).click();
 				break;
 			}
@@ -286,8 +342,7 @@ public class C27503 extends TC_BaseClass {
 	}
 
 	public void clickEnterInputKBIForecast() throws InterruptedException {
-
-		driver.switchTo().frame(frame);
+		clickPlanning();
 		WebDriverWait wait = new WebDriverWait(driver, 80);
 		WebElement EnterInputKBIForecast = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//div[2]/div/div/ul[@class='ant-timeline']/div[4]/div/div[2]/div/i")));
@@ -297,9 +352,6 @@ public class C27503 extends TC_BaseClass {
 		Thread.sleep(1000);
 		a.moveToElement(EnterInputKBIForecast).click().build().perform();
 		driver.switchTo().activeElement();
-		driver.switchTo().activeElement();
-		// WebElement industries =
-		// driver.findElement(By.xpath("//div[4]/div/div/ul[@role='menu']"));
 		List<WebElement> start = driver.findElements(By.xpath(
 				"//ul[@class='ant-dropdown-menu ant-dropdown-menu-light ant-dropdown-menu-root ant-dropdown-menu-vertical']/li"));
 

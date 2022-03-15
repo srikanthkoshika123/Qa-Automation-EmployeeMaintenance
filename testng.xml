@@ -8,8 +8,8 @@
     <parameter name="browser" value="firefox" />
 
        <classes>
-	       <class name="com.pack.testCases.TC_C27504"/>
-       
+	       <class name="com.pack.testCases.TC_C27649"/>
+
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

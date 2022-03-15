@@ -15,18 +15,19 @@ public class TC_C27503 extends TC_BaseClass  {
 		
 		ScreenRecorderUtil.startRecord("Labor");	
     	C27503 labor=new C27503(driver);
-    	labor.clickUnifocus();
-    	labor.clickEnterActualEnvironments();
-    	labor.clickEnterActualKBIs();
-    	labor.clickEnterEmployeeProductivity();
-    	labor.clickEnterActualHours();
+    	//labor.clickUnifocus();
+    	//labor.clickEnterActualEnvironments();
+    	//labor.clickEnterActualKBIs();
+    	//labor.clickEnterEmployeeProductivity();
+    	//labor.clickEnterActualHours();
     	labor.clickPlanning();
+    	labor.retryingFindClick();
     	labor.clickForecastEnvironments();
-    	/*labor.clickEnterPreWork();
+    	labor.clickEnterPreWork();
     	labor.clickEnterInputKBIForecast();
     	labor.clickViewEditRevenueCenterForecast();
     	labor.clickManageSchedules();
-    	labor.clickEnterScheduledHours();*/
+    	labor.clickEnterScheduledHours();
     	labor.clickReProjectLabor();
     	labor.clickScheduling();
     	labor.clickEmployeeRequests();
