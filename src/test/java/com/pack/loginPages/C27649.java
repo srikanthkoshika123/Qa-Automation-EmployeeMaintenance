@@ -51,7 +51,10 @@ public class C27649 extends TC_BaseClass {
 		String un = unifocus.getText();
 		System.out.println(un);
 		Assert.assertEquals("UniFocus", un);
-		setup.click();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement setup = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Setup']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", setup);
+		
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
 		WebElement financial = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='SETUP$Menu']/li[12]/div")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", financial);
