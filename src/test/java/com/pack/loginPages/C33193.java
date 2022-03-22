@@ -362,7 +362,7 @@ public class C33193 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", date);
 		WebDriverWait wait7 = new WebDriverWait(driver, 40);
 		WebElement dateRange = wait7
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='3/5/22 - 3/18/22']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='"+dates+"']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateRange);
 	}
 

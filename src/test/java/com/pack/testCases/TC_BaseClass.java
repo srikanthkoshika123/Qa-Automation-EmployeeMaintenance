@@ -53,14 +53,10 @@ public class TC_BaseClass {
 		ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 		 driver = new ChromeDriver(chromeOptions);
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		
-		 
 		}
 		else if(browser.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"//Drivers//geckodriver.exe");
 			 driver = new FirefoxDriver();
-				JavascriptExecutor js = (JavascriptExecutor) driver;
 			}
 		else if(browser.equals("ie")) {
 			System.setProperty("webdriver.ie.driver",readconfig.getIEpath());
