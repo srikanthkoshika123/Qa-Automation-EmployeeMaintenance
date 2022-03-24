@@ -91,17 +91,20 @@ public class C27509 extends TC_BaseClass {
 
 	public void flowpatterns() {
 		clickUnifocus();
-		flowpatterns.click();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement flowpatterns = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Flow Patterns']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", flowpatterns);
 		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 120);
-		WebElement flowpattern = wait
+		WebDriverWait wait1 = new WebDriverWait(driver, 120);
+		WebElement flowpattern = wait1
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Flow Pattern']")));
 		String button = flowpattern.getText();
 		System.out.println(button);
 		Assert.assertEquals("Flow Pattern", button);
 
-		WebDriverWait wait1 = new WebDriverWait(driver, 120);
-		WebElement per = wait1
+		WebDriverWait wait2 = new WebDriverWait(driver, 120);
+		WebElement per = wait2
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Details - Percentage']")));
 		String dp = per.getText();
 		System.out.println(dp);
@@ -114,7 +117,7 @@ public class C27509 extends TC_BaseClass {
 
 	public void flowplans() {
 		clickUnifocus();
-		
+
 		WebDriverWait wait = new WebDriverWait(driver, 120);
 		WebElement fp = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@title='Flow Plans']")));
@@ -140,34 +143,37 @@ public class C27509 extends TC_BaseClass {
 
 	public void forecaststructure() {
 		clickUnifocus();
-		forecastst.click();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement foreCast = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Forecast Structure']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", foreCast);
+		
 		driver.switchTo().frame(frame);
 
-		WebDriverWait wait = new WebDriverWait(driver, 120);
-		WebElement k = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='KBIs']")));
+		WebDriverWait wait1 = new WebDriverWait(driver, 120);
+		WebElement k = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='KBIs']")));
 		String kbis = k.getText();
 		System.out.println(kbis);
 		Assert.assertEquals("KBIs", kbis);
 
-		WebDriverWait wait1 = new WebDriverWait(driver, 120);
-		WebElement add = wait1.until(
+		WebDriverWait wait2 = new WebDriverWait(driver, 120);
+		WebElement add = wait2.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ant-btn-group']//button[1]")));
 		String button = add.getText();
 		Assert.assertEquals(true, add.isDisplayed());
 		System.out.println("add button is displayed");
 
-		WebDriverWait wait2 = new WebDriverWait(driver, 120);
-		WebElement n = wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
+		WebDriverWait wait3 = new WebDriverWait(driver, 120);
+		WebElement n = wait3.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Name']")));
 		String name = n.getText();
 		System.out.println(name);
 		Assert.assertEquals("Name", name);
 	}
 
 	public void market() throws InterruptedException {
-		Thread.sleep(6000);
 		WebDriverWait wait3 = new WebDriverWait(driver, 120);
-		WebElement market = wait3
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div/div/div[1]/div/div[1]/div/ul/li[2]")));
+		WebElement market = wait3.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div/div/div[1]/div/div[1]/div/ul/li[2]")));
 		Thread.sleep(6000);
 		market.click();
 		WebDriverWait wait = new WebDriverWait(driver, 120);
@@ -187,8 +193,8 @@ public class C27509 extends TC_BaseClass {
 
 	public void revenue() {
 		WebDriverWait wait3 = new WebDriverWait(driver, 120);
-		WebElement revenue = wait3
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div/div/div[1]/div/div[1]/div/ul/li[3]")));
+		WebElement revenue = wait3.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div/div/div[1]/div/div[1]/div/ul/li[3]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", revenue);
 
 		WebDriverWait wait = new WebDriverWait(driver, 120);
@@ -204,7 +210,7 @@ public class C27509 extends TC_BaseClass {
 		String button2 = adddrop.getText();
 		Assert.assertEquals(true, adddrop.isDisplayed());
 		System.out.println("add1 dropdown is displayed");
-		
+
 		driver.switchTo().defaultContent();
 		close.click();
 		System.out.println(driver.findElement(By.xpath("//div[text()='Forecast Structure']")).getText());
@@ -212,7 +218,11 @@ public class C27509 extends TC_BaseClass {
 
 	public void interfaces() {
 		clickUnifocus();
-		interfaces.click();
+		WebDriverWait wait3 = new WebDriverWait(driver, 120);
+		WebElement interfaces = wait3.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//li[@title='Interfaces']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", interfaces);
+
 		driver.switchTo().frame(frame);
 		WebDriverWait wait2 = new WebDriverWait(driver, 120);
 		WebElement infbu = wait2.until(ExpectedConditions.visibilityOfElementLocated(
@@ -235,7 +245,11 @@ public class C27509 extends TC_BaseClass {
 
 	public void labourstandarads() {
 		clickUnifocus();
-		labourstandards.click();
+		WebDriverWait wait3 = new WebDriverWait(driver, 120);
+		WebElement labourStandards = wait3.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//li[@title='Labor Standards']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", labourStandards);
+
 		driver.switchTo().frame(frame);
 		WebDriverWait wait = new WebDriverWait(driver, 120);
 		WebElement sl = wait
@@ -265,7 +279,11 @@ public class C27509 extends TC_BaseClass {
 
 	public void labourstructure() {
 		clickUnifocus();
-		labourstructure.click();
+		WebDriverWait wait3 = new WebDriverWait(driver, 120);
+		WebElement labourStructure = wait3.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//li[@title='Labor Structure']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", labourStructure);
+
 		driver.switchTo().frame(frame);
 		WebDriverWait wait = new WebDriverWait(driver, 120);
 		WebElement add = wait.until(ExpectedConditions
@@ -274,12 +292,14 @@ public class C27509 extends TC_BaseClass {
 		Assert.assertEquals(true, add.isDisplayed());
 		System.out.println("adddropdown is displayed");
 
-		/*WebDriverWait wait1 = new WebDriverWait(driver, 120);
-		WebElement propertyDefault = wait1
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Property Default']")));
-		String property = propertyDefault.getText();
-		System.out.println(property);
-		Assert.assertEquals("Property Default", property);*/
+		/*
+		 * WebDriverWait wait1 = new WebDriverWait(driver, 120); WebElement
+		 * propertyDefault = wait1
+		 * .until(ExpectedConditions.visibilityOfElementLocated(By.
+		 * xpath("//span[text()='Property Default']"))); String property =
+		 * propertyDefault.getText(); System.out.println(property);
+		 * Assert.assertEquals("Property Default", property);
+		 */
 
 		driver.switchTo().defaultContent();
 		close.click();
@@ -289,7 +309,11 @@ public class C27509 extends TC_BaseClass {
 
 	public void mobileconfig() {
 		clickUnifocus();
-		mobileconfig.click();
+		WebDriverWait wait3 = new WebDriverWait(driver, 120);
+		WebElement mobileConfig = wait3.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//li[@title='Mobile Configuration']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", mobileConfig);
+
 		driver.switchTo().frame(frame);
 		WebDriverWait wait = new WebDriverWait(driver, 120);
 		WebElement sr = wait.until(
@@ -320,7 +344,11 @@ public class C27509 extends TC_BaseClass {
 
 	public void workrules() {
 		clickUnifocus();
-		workrules.click();
+		WebDriverWait wait3 = new WebDriverWait(driver, 120);
+		WebElement workRules = wait3.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//li[@title='Work Rules']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", workRules);
+
 		driver.switchTo().frame(frame);
 
 		WebDriverWait wait = new WebDriverWait(driver, 120);

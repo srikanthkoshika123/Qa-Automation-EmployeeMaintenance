@@ -131,18 +131,22 @@ public class C30317 extends TC_BaseClass {
 			aRate.sendKeys(Keys.CONTROL + "a");
 			aRate.sendKeys(Keys.DELETE, annual);
 		} else if (payType.equals("Salaried Exempt")) {
-			WebElement salary = driver.findElement(By.xpath("//div[text()='Salary 8']"));
-			salary.click();
+			WebDriverWait wait = new WebDriverWait(driver, 40);
+			WebElement salary = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Salary 8']")));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", salary);
+
 			List<WebElement> salaryexempt = driver.findElements(By.xpath(
 					"//ul[@class='ant-select-dropdown-menu  ant-select-dropdown-menu-root ant-select-dropdown-menu-vertical']/li"));
 
 			for (int i = 0; i <= salaryexempt.size() - 1; i++) {
 				if (salaryexempt.get(i).getText().contains(sd)) {
+					Thread.sleep(3000);
 					salaryexempt.get(i).click();
 					break;
 				}
 			}
-			WebDriverWait wait3 = new WebDriverWait(driver, 40);
+			/*WebDriverWait wait3 = new WebDriverWait(driver, 40);
 			WebElement ear = wait3.until(ExpectedConditions.elementToBeClickable(By.xpath(
 					"//label[@class='AddEditJobModal-module___wageCheckbox___TQnIf ant-checkbox-wrapper']//input[@type='checkbox']")));
 			Thread.sleep(3000);
@@ -150,7 +154,7 @@ public class C30317 extends TC_BaseClass {
 			WebElement er = driver.findElement(By.xpath(
 					"//input[@class='ant-input input-field uf-input-field AddEditJobModal-module___wageField___5cszH']"));
 			er.sendKeys(Keys.CONTROL + "a");
-			er.sendKeys(Keys.DELETE, sAr);
+			er.sendKeys(Keys.DELETE, sAr);*/
 		} else if (payType.equals("Piece")) {
 			WebElement piece = driver.findElement(By.xpath(
 					"//input[@class='ant-input input-field uf-input-field AddEditJobModal-module___wageField___5cszH']"));
@@ -370,6 +374,7 @@ public class C30317 extends TC_BaseClass {
 	}
 
 	public void selectDateRange(String filterJob, String dynamicName) throws InterruptedException {
+		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: minus-square-o']")));
@@ -378,6 +383,7 @@ public class C30317 extends TC_BaseClass {
 		WebElement element1 = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: arrows-alt']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element1);
+		Thread.sleep(2000);
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
 		WebElement element2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(filterJob)));
 		Coordinates cor = ((Locatable) element2).getCoordinates();
@@ -394,7 +400,7 @@ public class C30317 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", date);
 		WebDriverWait wait7 = new WebDriverWait(driver, 40);
 		WebElement dateRange = wait7
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='3/5/22 - 3/18/22']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='3/19/22 - 4/1/22']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateRange);
 		WebDriverWait wait5 = new WebDriverWait(driver, 40);
 		WebElement element5 = wait5.until(ExpectedConditions.elementToBeClickable(By.xpath(

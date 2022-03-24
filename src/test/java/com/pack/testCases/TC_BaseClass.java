@@ -4,6 +4,7 @@ package com.pack.testCases;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -18,6 +19,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -71,7 +73,7 @@ public class TC_BaseClass {
 		  lp.clickNext();
 		  logger.info("enter user name");
 		  lp.setUserName(loginas);
-		  	logger.info("password entered");
+		  logger.info("password entered");
 		  lp.setPassWord(Password);
 		  Thread.sleep(4000);
 		  lp.clickSignIn();

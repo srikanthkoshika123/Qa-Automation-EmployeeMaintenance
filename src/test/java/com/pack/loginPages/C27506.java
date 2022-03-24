@@ -92,14 +92,10 @@ public class C27506 extends TC_BaseClass {
 		String ge = general.getText();
 		System.out.println(ge);
 		Assert.assertEquals("General", ge);
-		WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		WebElement Audits = wait2.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//button[@class='ant-btn uf-actionbar-menu-button ant-dropdown-trigger uf-actionbar-dropdown']")));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", Audits);
-		Thread.sleep(2000);
+	
 		WebDriverWait wait4 = new WebDriverWait(driver, 40);
 		WebElement reconcileEmployees = wait4.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//li[normalize-space()='Reconcile Employees']")));
+				By.xpath("//button/span[text()='Reconcile Employees']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", reconcileEmployees);
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();

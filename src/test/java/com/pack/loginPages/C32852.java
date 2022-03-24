@@ -253,10 +253,14 @@ public class C32852 extends TC_BaseClass {
 		String un = unifocus.getText();
 		System.out.println(un);
 		Assert.assertEquals("UniFocus", un);
-		Thread.sleep(4000);
-		labor.click();
-		Thread.sleep(4000);
-		scheduling.click();
+		WebDriverWait wait2 = new WebDriverWait(driver, 40);
+		WebElement labor = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//span[text()='Labor']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", labor);
+		WebDriverWait wait3 = new WebDriverWait(driver, 40);
+		WebElement scheduling = wait3.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//li[@title='Scheduling']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", scheduling);
 	}
 
 	public boolean retryingFindClick() throws InterruptedException {
@@ -287,6 +291,7 @@ public class C32852 extends TC_BaseClass {
 	}
 
 	public void selectDateRange(String filterJob, String dynamicName) throws InterruptedException {
+		 Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: minus-square-o']")));
@@ -295,13 +300,11 @@ public class C32852 extends TC_BaseClass {
 		WebElement element1 = wait1.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//button[@class='ant-btn ant-btn-icon-only']/i[@aria-label='icon: arrows-alt']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element1);
-
+        Thread.sleep(2000);
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
 		WebElement element2 = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(filterJob)));
-		Coordinates cor = ((Locatable) element2).getCoordinates();
-		cor.inViewPort();
-		Thread.sleep(1000);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element2);
+		
 		WebDriverWait wait3 = new WebDriverWait(driver, 40);
 		WebElement element4 = wait3.until(
 				ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='ant-btn ant-btn-primary']")));
@@ -312,7 +315,7 @@ public class C32852 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", date);
 		WebDriverWait wait7 = new WebDriverWait(driver, 40);
 		WebElement dateRange = wait7
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='3/5/22 - 3/18/22']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='3/19/22 - 4/1/22']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateRange);
 		WebDriverWait wait5 = new WebDriverWait(driver, 40);
 		WebElement element5 = wait5.until(ExpectedConditions.elementToBeClickable(By.xpath(
@@ -366,7 +369,7 @@ public class C32852 extends TC_BaseClass {
 			if (value.equalsIgnoreCase(day5)) {
 
 				checkBoxes.get(i).click();
-				Thread.sleep(6000);
+				Thread.sleep(4000);
 				break;
 
 			}
@@ -381,7 +384,7 @@ public class C32852 extends TC_BaseClass {
 			if (value.equalsIgnoreCase(day6)) {
 
 				checkBoxes2.get(i).click();
-				Thread.sleep(6000);
+				Thread.sleep(4000);
 				break;
 
 			}
@@ -396,7 +399,7 @@ public class C32852 extends TC_BaseClass {
 			if (value.equalsIgnoreCase(day7)) {
 
 				checkBoxes3.get(i).click();
-				Thread.sleep(6000);
+				Thread.sleep(4000);
 				break;
 
 			}
@@ -411,7 +414,7 @@ public class C32852 extends TC_BaseClass {
 			if (value.equalsIgnoreCase(day8)) {
 
 				checkBoxes4.get(i).click();
-				Thread.sleep(6000);
+				Thread.sleep(4000);
 				break;
 
 			}
@@ -574,7 +577,7 @@ public class C32852 extends TC_BaseClass {
 		WebElement refresh = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//button[@class='ant-btn action-button ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", refresh);
-		Thread.sleep(40000);
+		Thread.sleep(4000);
 
 	}
 }

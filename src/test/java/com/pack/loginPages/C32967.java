@@ -96,7 +96,7 @@ public class C32967 extends TC_BaseClass {
 			try {
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement doubleClick = driver.findElement(By.xpath("//div/span/span[text()='Division 1']"));
+				WebElement doubleClick = driver.findElement(By.xpath("//div[@row-index='21']//span[text()='Division 1']"));
 				action.moveToElement(doubleClick).doubleClick().build().perform();
 				result = true;
 				break;
@@ -128,8 +128,10 @@ public class C32967 extends TC_BaseClass {
 			try {
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement code = driver.findElement(By.xpath("//div[contains(text(),'Division 1')]"));
+				WebElement code = driver.findElement(By.xpath("//div[@row-index='21']//div[@aria-colindex='2']"));
 				action.moveToElement(code).doubleClick().build().perform();
+				Thread.sleep(4000);
+				code.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -172,10 +174,13 @@ public class C32967 extends TC_BaseClass {
 		int attempts = 0;
 		while (attempts < 2) {
 			try {
+
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement department = driver.findElement(By.xpath("//span[text()='Department1']"));
-				action.moveToElement(department).doubleClick(department).build().perform();
+				WebElement department = driver.findElement(By.xpath("//div[@row-index='22']//span[text()='Department1']"));
+				action.moveToElement(department).click().build().perform();
+				Thread.sleep(4000);
+				department.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -206,8 +211,10 @@ public class C32967 extends TC_BaseClass {
 			try {
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement code = driver.findElement(By.xpath("//div[contains(text(),'Department1')]"));
+				WebElement code = driver.findElement(By.xpath("//div[@row-index='22']//div[@aria-colindex='2']"));
 				action.moveToElement(code).doubleClick().build().perform();
+				Thread.sleep(4000);
+				code.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -252,8 +259,10 @@ public class C32967 extends TC_BaseClass {
 			try {
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement department = driver.findElement(By.xpath("//div/span/span[text()='Job1']"));
+				WebElement department = driver.findElement(By.xpath("//div[@row-index='23']//span[text()='Job1']"));
 				action.moveToElement(department).doubleClick(department).build().perform();
+				Thread.sleep(4000);
+				department.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -284,8 +293,10 @@ public class C32967 extends TC_BaseClass {
 			try {
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement code = driver.findElement(By.xpath("//div[contains(text(),'Job1')]"));
+				WebElement code = driver.findElement(By.xpath("//div[@row-index='23']//div[@aria-colindex='2']"));
 				action.moveToElement(code).doubleClick().build().perform();
+				Thread.sleep(4000);
+				code.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -335,8 +346,10 @@ public class C32967 extends TC_BaseClass {
 				
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement department = driver.findElement(By.xpath("//div[2]/div[1]/div[3]/div[1]/div[1]/div[1]"));
+				WebElement department = driver.findElement(By.xpath("//div[@row-index='24']//span[text()='Assignment1']"));
 				action.moveToElement(department).doubleClick(department).build().perform();
+				Thread.sleep(4000);
+				department.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -367,8 +380,10 @@ public class C32967 extends TC_BaseClass {
 			try {
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement code = driver.findElement(By.xpath("//div[contains(text(),'Assignment1')]"));
+				WebElement code = driver.findElement(By.xpath("//div[@row-index='24']//div[@aria-colindex='2']"));
 				action.moveToElement(code).doubleClick().build().perform();
+				Thread.sleep(4000);
+				code.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -396,8 +411,10 @@ public class C32967 extends TC_BaseClass {
 			try {
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement department = driver.findElement(By.xpath("//div/span/span[text()='Auto Job1']"));
+				WebElement department = driver.findElement(By.xpath("//div[@row-index='23']//span[text()='Auto Job1']"));
 				action.moveToElement(department).click().build().perform();
+				Thread.sleep(4000);
+				department.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {
@@ -420,8 +437,10 @@ public class C32967 extends TC_BaseClass {
 				
 				driver.switchTo().activeElement();
 				Actions action = new Actions(driver);
-				WebElement department = driver.findElement(By.xpath("//div[2]/div[1]/div[3]/div[1]/div[1]/div[1]"));
+				WebElement department = driver.findElement(By.xpath("//div[@row-index='25']//span[text()='Assignment1']"));
 				action.moveToElement(department).doubleClick(department).build().perform();
+				Thread.sleep(4000);
+				department.click();
 				result = true;
 				break;
 			} catch (StaleElementReferenceException e) {

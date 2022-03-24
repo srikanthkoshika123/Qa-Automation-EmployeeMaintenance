@@ -101,7 +101,7 @@ public class C30319 extends TC_BaseClass {
 
 		for (int i = 0; i <= allOptions.size() - 1; i++) {
 			if (allOptions.get(i).getText().contains(option)) {
-				Thread.sleep(800);
+				Thread.sleep(3000);
 				allOptions.get(i).click();
 				break;
 

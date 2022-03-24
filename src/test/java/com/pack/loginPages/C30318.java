@@ -480,23 +480,18 @@ public class C30318 extends TC_BaseClass {
 		WebDriverWait wait1 = new WebDriverWait(driver, 40);
 		WebElement employeeType = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='type']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeType);
-
-		List<WebElement> jobType = driver.findElements(By.xpath(
-				"//ul[@class='ant-select-dropdown-menu  ant-select-dropdown-menu-root ant-select-dropdown-menu-vertical']/li"));
-
-		for (int i = 0; i <= jobType.size() - 1; i++) {
-			if (jobType.get(i).getText().contains(EmployeeType)) {
-				Thread.sleep(4000);
-				jobType.get(i).click();
-				break;
-			}
-		}
+        
+		WebDriverWait wait2 = new WebDriverWait(driver, 40);
+		WebElement employee = wait2
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='"+EmployeeType+"']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employee);
+		
 		WebDriverWait wait4 = new WebDriverWait(driver, 40);
 		WebElement clickOk = wait4
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']")));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickOk);
-		WebDriverWait wait5 = new WebDriverWait(driver, 40);
 		Thread.sleep(1000);
+		clickOk.click();
+		WebDriverWait wait5 = new WebDriverWait(driver, 40);
 		WebElement informationSaved = wait5.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//span[contains(text(),'Scheduling Information Saved')]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", informationSaved);
