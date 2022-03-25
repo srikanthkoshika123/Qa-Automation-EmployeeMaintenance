@@ -217,15 +217,13 @@ public class C27503 extends TC_BaseClass {
 		WebElement actualsclose = wait2.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//*[@id='root']/div/div/section/div/div/div[1]/div[2]/div/div/div/div[1]/div[2]/div/i")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", actualsclose);
-		Thread.sleep(2000);
-		driver.switchTo().frame(frame);
+		Thread.sleep(4000);
+		/*driver.switchTo().frame(frame);
 		WebElement job = driver.findElement(By.xpath("//h4[normalize-space()='Actuals Period']"));
 		String multiple = job.getText();
 		System.out.println(multiple);
-		Assert.assertEquals("Actuals Period", multiple);
+		Assert.assertEquals("Actuals Period", multiple);*/
 		driver.switchTo().defaultContent();
-		close.click();
-		Thread.sleep(4000);
 		close.click();
 	}
 
@@ -308,7 +306,7 @@ public class C27503 extends TC_BaseClass {
 
 	public void clickEnterPreWork() throws InterruptedException {
 		clickPlanning();
-		driver.switchTo().frame(frame);
+		
 		WebDriverWait wait = new WebDriverWait(driver, 80);
 		WebElement EnterPreWork = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//div[2]/div/div/ul[@class='ant-timeline']/div[2]/div/div[2]/div/i")));
@@ -345,7 +343,7 @@ public class C27503 extends TC_BaseClass {
 
 	public void clickEnterInputKBIForecast() throws InterruptedException {
 		clickPlanning();
-		driver.switchTo().frame(frame);
+		
 		WebDriverWait wait = new WebDriverWait(driver, 80);
 		WebElement EnterInputKBIForecast = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//div[2]/div/div/ul[@class='ant-timeline']/div[4]/div/div[2]/div/i")));
@@ -509,19 +507,18 @@ public class C27503 extends TC_BaseClass {
 	public void clickReProjectLabor() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		WebElement reProjectLabor = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Re-Project Labor']")));
+		WebElement reProjectLabor = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Re-Project Labor']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", reProjectLabor);
-	
-		driver.switchTo().frame(frame);
-		try {
-			driver.switchTo().activeElement();
-			driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-			WebElement ProjectedHours = driver.findElement(
-					By.xpath("//div[@class='ant-form-item-control']/span[@class='ant-form-item-children']/button[1]"));
-		} catch (NoSuchElementException e) {
-			System.out.println("nosuchelement");
 
-		}
+		driver.switchTo().frame(frame);
+
+		driver.switchTo().activeElement();
+		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+		WebElement ProjectedHours = driver.findElement(By.xpath("//button/span[text()='Generate Projected Hours']"));
+		String scheduledPeriod = ProjectedHours.getText();
+		System.out.println(scheduledPeriod);
+		Assert.assertEquals("Generate Projected Hours", scheduledPeriod);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
@@ -529,19 +526,16 @@ public class C27503 extends TC_BaseClass {
 	public void clickScheduling() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		WebElement scheduling = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Scheduling']")));
+		WebElement scheduling = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Scheduling']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", scheduling);
 
 		driver.switchTo().frame(frame);
-		try {
-			driver.switchTo().activeElement();
-			driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-			WebElement selectKBIs = driver
-					.findElement(By.xpath("//div[@class='Footer-module___footer___1k53u']//button[@type='button']"));
-		} catch (NoSuchElementException e) {
-			System.out.println("nosuchelement");
-
-		}
+		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+		WebElement employeeSchedules = driver.findElement(By.xpath("//h1[@title='Employee Schedules']"));
+		String scheduledPeriod = employeeSchedules.getText();
+		System.out.println(scheduledPeriod);
+		Assert.assertEquals("Employee Schedules", scheduledPeriod);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
@@ -549,110 +543,107 @@ public class C27503 extends TC_BaseClass {
 	public void clickEmployeeRequests() throws InterruptedException {
 		clickUnifocus();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		WebElement employeeRequests = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Employee Requests']")));
+		WebElement employeeRequests = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Employee Requests']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeRequests);
 		driver.switchTo().frame(frame);
-		try {
-			driver.switchTo().activeElement();
-			Thread.sleep(20000);
-			WebElement addRequest = driver
-					.findElement(By.xpath("//button[@class='ant-btn ToolbarLeft-module___addRequestButton___2bP5a']"));
-
-		} catch (NoSuchElementException e) {
-			System.out.println("nosuchelement");
-
-		}
+		WebElement addRequest = driver.findElement(By.xpath("//button//span[text()=' Add Request']"));
+		String scheduledPeriod = addRequest.getText();
+		System.out.println(scheduledPeriod);
+		
 		driver.switchTo().defaultContent();
 		close.click();
 	}
 
 	public void clickShiftRequests() throws InterruptedException {
-		unifocus.click();
-		labor.click();
-		employeeRequests.click();
+		clickUnifocus();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement employeeRequests = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Employee Requests']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeRequests);
+
 		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 120);
-		WebElement addRequest = wait
+		WebDriverWait wait1 = new WebDriverWait(driver, 120);
+		WebElement addRequest = wait1
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@title='Shift Requests']")));
 		Thread.sleep(6000);
 		addRequest.click();
-		try {
-			driver.switchTo().activeElement();
-			WebDriverWait kbi = new WebDriverWait(driver, 80);
-			WebElement shifts = kbi.until(ExpectedConditions
-					.visibilityOfElementLocated(By.xpath("//div[@title='Shift Start (Soonest First)']")));
-			Thread.sleep(4000);
-		} catch (NoSuchElementException e) {
-			System.out.println("nosuchelement");
-
-		}
+		WebDriverWait kbi = new WebDriverWait(driver, 80);
+		WebElement shifts = kbi.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@title='Shift Start (Soonest First)']")));
+		String shift = shifts.getText();
+		System.out.println(shift);
+		Assert.assertEquals("Shift Start (Soonest First)", shift);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
 
 	public void clickCallIns() throws InterruptedException {
-		unifocus.click();
-		labor.click();
-		employeeRequests.click();
+		clickUnifocus();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement employeeRequests = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Employee Requests']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeRequests);
+
 		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 120);
-		WebElement callIns = wait
+		WebDriverWait wait1 = new WebDriverWait(driver, 120);
+		WebElement callIns = wait1
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@title='Call Ins']")));
 		Thread.sleep(4000);
 		callIns.click();
-		try {
-			driver.switchTo().activeElement();
-			WebDriverWait kbi = new WebDriverWait(driver, 80);
-			WebElement filter = kbi.until(ExpectedConditions
-					.visibilityOfElementLocated(By.xpath("//div[@title='Call In Date (Oldest First)']")));
-			Thread.sleep(4000);
-		} catch (NoSuchElementException e) {
-			System.out.println("nosuchelement");
 
-		}
+		driver.switchTo().activeElement();
+		WebDriverWait kbi = new WebDriverWait(driver, 80);
+		WebElement filter = kbi.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@title='Call In Date (Oldest First)']")));
+		String shift = filter.getText();
+		System.out.println(shift);
+		Assert.assertEquals("Call In Date (Oldest First)", shift);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
 
 	public void clickAvailabilityRequests() throws InterruptedException {
-		unifocus.click();
-		labor.click();
-		employeeRequests.click();
+		clickUnifocus();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement employeeRequests = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Employee Requests']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", employeeRequests);
+
 		driver.switchTo().frame(frame);
-		WebDriverWait wait = new WebDriverWait(driver, 120);
-		WebElement avalability = wait
+		WebDriverWait wait1 = new WebDriverWait(driver, 120);
+		WebElement avalability = wait1
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@title='Availability']")));
 		Thread.sleep(4000);
 		avalability.click();
-		try {
-			driver.switchTo().activeElement();
-			WebDriverWait kbi = new WebDriverWait(driver, 80);
-			WebElement EnteredonDate = kbi.until(ExpectedConditions
-					.visibilityOfElementLocated(By.xpath("//div[@title='Entered on Date (Oldest First)']")));
-			Thread.sleep(4000);
-		} catch (NoSuchElementException e) {
-			System.out.println("nosuchelement");
 
-		}
+		driver.switchTo().activeElement();
+		WebDriverWait kbi = new WebDriverWait(driver, 80);
+		WebElement EnteredonDate = kbi.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//div[@title='Entered on Date (Oldest First)']")));
+		String shift = EnteredonDate.getText();
+		System.out.println(shift);
+		Assert.assertEquals("Entered on Date (Oldest First)", shift);
 		driver.switchTo().defaultContent();
 		close.click();
 	}
 
 	public void clickTimeLineScheduling() throws InterruptedException {
-		unifocus.click();
-		labor.click();
-		timeLineScheduling.click();
-		driver.switchTo().frame(frame);
-		try {
-			driver.switchTo().activeElement();
-			WebDriverWait kbi = new WebDriverWait(driver, 80);
-			WebElement addShift = kbi.until(
-					ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='button-1033-btnIconEl']")));
-			Thread.sleep(4000);
-		} catch (NoSuchElementException e) {
-			System.out.println("nosuchelement");
+		clickUnifocus();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebElement timeLineScheduling = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Timeline Scheduling']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", timeLineScheduling);
 
-		}
+		driver.switchTo().frame(frame);
+
+		driver.switchTo().activeElement();
+		WebDriverWait kbi = new WebDriverWait(driver, 80);
+		WebElement addShift = kbi
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='title-1086-textEl']")));
+		String shift = addShift.getText();
+		System.out.println(shift);
+		Assert.assertEquals("Select Jobs and Dates", shift);
 		driver.switchTo().defaultContent();
 		close.click();
 	}

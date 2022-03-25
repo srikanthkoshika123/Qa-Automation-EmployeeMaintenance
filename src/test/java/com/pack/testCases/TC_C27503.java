@@ -23,11 +23,6 @@ public class TC_C27503 extends TC_BaseClass  {
     	labor.clickPlanning();
     	labor.retryingFindClick();
     	labor.clickForecastEnvironments();
-    	/*labor.clickEnterPreWork();
-    	labor.clickEnterInputKBIForecast();
-    	labor.clickViewEditRevenueCenterForecast();
-    	labor.clickManageSchedules();
-    	labor.clickEnterScheduledHours();*/
     	labor.clickReProjectLabor();
     	labor.clickScheduling();
     	labor.clickEmployeeRequests();
