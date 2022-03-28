@@ -45,12 +45,10 @@ public class TC_C32967 extends TC_BaseClass {
 		  assignments.clickExpandAutoJob1();
 		  assignments.doubleClickAssignment2();
 		  assignments.changeNameAssignment2(assignment2Name);
-		  //assignments.doubleClickAssignmentCode2();
+		  assignments.doubleClickAssignment2Code();
 		  assignments.EditAssignmentCode2(assignment2Code);
-		  //assignments.doubleClickAutoJob2();
-		  //assignments.doubleClickAssignment3();
 		  assignments.changeNameAssignment3(assignment3Name);
-		 // assignments.doubleClickAssignmentCode3();
+		  assignments.doubleClickAssignmentCode3();
 		  assignments.EditAssignmentCode3(assignment3Code);
 }
 	 @DataProvider(name="LaborStructure")
