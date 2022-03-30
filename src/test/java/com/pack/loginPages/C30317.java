@@ -359,7 +359,9 @@ public class C30317 extends TC_BaseClass {
 				// div > div >button.ant-dropdown-trigger:nth-child(2)
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				Actions action = new Actions(driver);
-				action.moveToElement(ele).build().perform();
+				action.moveToElement(ele).build();
+				action.perform();
+				Thread.sleep(1000);
 				driver.switchTo().activeElement();
 				WebElement das = driver.findElement(By.xpath("//li[text()='Filter by Job']"));
 				das.click();
