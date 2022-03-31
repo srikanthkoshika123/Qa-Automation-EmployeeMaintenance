@@ -352,12 +352,10 @@ public class C30317 extends TC_BaseClass {
 		int attempts = 0;
 		while (attempts < 2) {
 			try {
-
 				WebDriverWait wait = new WebDriverWait(driver, 120);
 				WebElement ele = wait.until(ExpectedConditions
 						.elementToBeClickable(By.cssSelector("div > div >button.ant-dropdown-trigger:nth-child(2)")));
 				// div > div >button.ant-dropdown-trigger:nth-child(2)
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				Actions action = new Actions(driver);
 				action.moveToElement(ele).build();
 				action.perform();
@@ -375,7 +373,7 @@ public class C30317 extends TC_BaseClass {
 
 	}
 
-	public void selectDateRange(String filterJob, String dynamicName) throws InterruptedException {
+	public void selectDateRange(String filterJob,String date,String dynamicName) throws InterruptedException {
 		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(
@@ -397,12 +395,12 @@ public class C30317 extends TC_BaseClass {
 				ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='ant-btn ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element4);
 		WebDriverWait wait6 = new WebDriverWait(driver, 40);
-		WebElement date = wait6.until(ExpectedConditions.elementToBeClickable(
+		WebElement SelectDate = wait6.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//div[@class='unifocus-selectdropdown ant-select ant-select-enabled']")));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", date);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", SelectDate);
 		WebDriverWait wait7 = new WebDriverWait(driver, 40);
 		WebElement dateRange = wait7
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='3/19/22 - 4/1/22']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='"+date+"']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateRange);
 		WebDriverWait wait5 = new WebDriverWait(driver, 40);
 		WebElement element5 = wait5.until(ExpectedConditions.elementToBeClickable(By.xpath(
