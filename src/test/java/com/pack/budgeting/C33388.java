@@ -295,7 +295,7 @@ public class C33388 extends TC_BaseClass {
 		public void selectReferenceDataSet() throws InterruptedException {
 					driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 					WebElement dataSet =driver.findElement(By.xpath("//ul//li[text()='2019']"));
-					 Thread.sleep(8000);
+					 Thread.sleep(18000);
 					dataSet.click();
 					
 					WebElement original =driver.findElement(By.xpath("//div//ul[2]//li[3]"));
