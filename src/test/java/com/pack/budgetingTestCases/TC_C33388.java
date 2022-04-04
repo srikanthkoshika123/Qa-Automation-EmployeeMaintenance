@@ -23,7 +23,6 @@ public class TC_C33388 extends TC_BaseClass {
 		financial.retryingFindClick();
 		financial.AddNew();
 		financial.selectReferenceDataSet();
-		financial.selectSave();
 		financial.DeletingAddNew();
 		financial.ExpandingSideMenu();
 		financial.BudgetConfiguration();

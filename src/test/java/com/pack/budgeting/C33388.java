@@ -292,36 +292,22 @@ public class C33388 extends TC_BaseClass {
 	}
 
 	
-		public boolean selectReferenceDataSet() throws InterruptedException {
-			boolean result = false;
-			int attempts = 0;
-			while (attempts < 2) {
-				try {
+		public void selectReferenceDataSet() throws InterruptedException {
 					driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 					WebElement dataSet =driver.findElement(By.xpath("//ul//li[text()='2019']"));
 					 Thread.sleep(8000);
 					dataSet.click();
 					
 					WebElement original =driver.findElement(By.xpath("//div//ul[2]//li[3]"));
-					 Thread.sleep(8000);
+					 Thread.sleep(6000);
 					original.click();
-					result = true;
-					break;
-				} catch (StaleElementReferenceException e) {
-				}
-				attempts++;
-			}
-			return result;
+					WebDriverWait wait11 = new WebDriverWait(driver, 40);
+					WebElement savebutton = wait11
+							.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Save']")));
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", savebutton);
+					
 		}
 		
-		public void selectSave() throws InterruptedException {
-		WebDriverWait wait11 = new WebDriverWait(driver, 40);
-		WebElement savebutton = wait11
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Save']")));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", savebutton);
-
-	}
-
 	public void DeletingAddNew() {
 		WebDriverWait wait21 = new WebDriverWait(driver, 120);
 		WebElement refdropdown = wait21
