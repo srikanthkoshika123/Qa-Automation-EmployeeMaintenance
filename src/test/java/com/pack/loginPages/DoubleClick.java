@@ -66,7 +66,8 @@ public class DoubleClick extends TC_BaseClass{
 		 Thread.sleep(4000);
 }
 	 public void clickJobType() throws InterruptedException {
-	    // abcd  
+	    // abcd 
+		 //edge
 	}
 	 public void clickEmptyCell() throws InterruptedException {
 		
