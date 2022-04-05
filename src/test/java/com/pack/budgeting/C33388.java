@@ -290,8 +290,6 @@ public class C33388 extends TC_BaseClass {
 		
 		 Thread.sleep(4000);
 	}
-
-	
 		public void selectReferenceDataSet() throws InterruptedException {
 					driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 					WebElement dataSet =driver.findElement(By.xpath("//ul//li[text()='2019']"));
