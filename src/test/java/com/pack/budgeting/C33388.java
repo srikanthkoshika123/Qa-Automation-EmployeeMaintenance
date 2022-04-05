@@ -117,8 +117,6 @@ public class C33388 extends TC_BaseClass {
 		System.out.println(revpar);
 		Assert.assertEquals("REVPAR", revpar);
 
-		// widget 2
-
 		WebDriverWait wait16 = new WebDriverWait(driver, 120);
 		WebElement tor = wait16
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Total Occupied Rooms']")));
@@ -244,8 +242,8 @@ public class C33388 extends TC_BaseClass {
 			try {
 
 				WebDriverWait wait = new WebDriverWait(driver, 40);
-				WebElement spa = wait.until(ExpectedConditions
-						.elementToBeClickable(By.xpath("//*[@id='root']/div/section/section/section/main/div/div/div/section/div/div[2]/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/table/tbody/tr[7]/td/div")));
+				WebElement spa = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+						"//*[@id='root']/div/section/section/section/main/div/div/div/section/div/div[2]/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/table/tbody/tr[7]/td/div")));
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", spa);
 				result = true;
 				break;
@@ -275,37 +273,38 @@ public class C33388 extends TC_BaseClass {
 		WebDriverWait wait12 = new WebDriverWait(driver, 40);
 		WebElement viewName = wait12
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='ant-input']")));
-		 Thread.sleep(2000);
+		Thread.sleep(2000);
 		viewName.sendKeys("test new view");
 		Thread.sleep(2000);
 		WebDriverWait wait11 = new WebDriverWait(driver, 40);
 		WebElement save = wait11.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("//html/body/div[7]/div/div[2]/div/div[2]/div[3]/div/button[2]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", save);
-        Thread.sleep(3000);
-        WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		WebElement addReferenceDataset = wait2.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//input[@placeholder='Add Reference Dataset']")));
+		Thread.sleep(3000);
+		WebDriverWait wait2 = new WebDriverWait(driver, 40);
+		WebElement addReferenceDataset = wait2.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Add Reference Dataset']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", addReferenceDataset);
-		
-		 Thread.sleep(4000);
+
+		Thread.sleep(4000);
 	}
-		public void selectReferenceDataSet() throws InterruptedException {
-					driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-					WebElement dataSet =driver.findElement(By.xpath("//ul//li[text()='2019']"));
-					 Thread.sleep(18000);
-					dataSet.click();
-					
-					WebElement original =driver.findElement(By.xpath("//div//ul[2]//li[3]"));
-					 Thread.sleep(6000);
-					original.click();
-					WebDriverWait wait11 = new WebDriverWait(driver, 40);
-					WebElement savebutton = wait11
-							.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Save']")));
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", savebutton);
-					
-		}
-		
+
+	public void selectReferenceDataSet() throws InterruptedException {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		WebElement dataSet = driver.findElement(By.xpath("//ul//li[text()='2019']"));
+		Thread.sleep(18000);
+		dataSet.click();
+
+		WebElement original = driver.findElement(By.xpath("//div//ul[2]//li[3]"));
+		Thread.sleep(6000);
+		original.click();
+		WebDriverWait wait11 = new WebDriverWait(driver, 40);
+		WebElement savebutton = wait11
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Save']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", savebutton);
+
+	}
+
 	public void DeletingAddNew() {
 		WebDriverWait wait21 = new WebDriverWait(driver, 120);
 		WebElement refdropdown = wait21
