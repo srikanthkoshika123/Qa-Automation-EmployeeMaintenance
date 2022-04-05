@@ -65,23 +65,8 @@ public class DoubleClick extends TC_BaseClass{
 		 ((JavascriptExecutor)driver).executeScript("arguments[0].click();", jobName);
 		 Thread.sleep(4000);
 }
-	 public boolean clickJobType() throws InterruptedException {
-	        boolean result = false;
-	        int attempts = 0;
-	        while(attempts < 2) {
-	            try {
-	            	driver.switchTo().activeElement();
-	        		Actions action = new Actions(driver);
-	        		WebElement doubleClick =driver.findElement(By.xpath("//section[1]/div/div[3]/div/div/div/div/div[2]/div[1]/div[3]/div[2]/div/div/div/div[3]"));
-	        		Thread.sleep(2000);
-	        		action.moveToElement(doubleClick).contextClick().build().perform();
-	                result = true;
-	                break;
-	            } catch(StaleElementReferenceException e) {
-	            }
-	            attempts++;
-	        }
-	        return result;
+	 public void clickJobType() throws InterruptedException {
+	       
 	}
 	 public void clickEmptyCell() throws InterruptedException {
 		
