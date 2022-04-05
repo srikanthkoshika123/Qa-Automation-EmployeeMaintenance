@@ -146,7 +146,6 @@ public class C33388 extends TC_BaseClass {
 		Assert.assertEquals("Available Rooms (Trend Line)", availrooms);
 
 	}
-
 	public void periodDropDown() {
 		WebDriverWait wait20 = new WebDriverWait(driver, 120);
 		WebElement perioddropdown = wait20
