@@ -84,25 +84,7 @@ public class DoubleClick extends TC_BaseClass{
 	        return result;
 	}
 	 public void clickEmptyCell() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 40);
-		 WebElement addShift = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Add Availability']"))); 
-		 ((JavascriptExecutor)driver).executeScript("arguments[0].click();", addShift);
-		 
-		startTime.sendKeys("6:00PM");
-		endTime.sendKeys("3:00AM");
 		
-		 WebDriverWait wait2 = new WebDriverWait(driver, 40);
-		 WebElement jobType = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='job']"))); 
-		 ((JavascriptExecutor)driver).executeScript("arguments[0].click();", jobType);
-		
-		WebDriverWait wait3 = new WebDriverWait(driver, 40);
-		 WebElement jobName = wait3.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[normalize-space()='Concierge']"))); 
-		 ((JavascriptExecutor)driver).executeScript("arguments[0].click();", jobName);
-		
-		 WebDriverWait wait1 = new WebDriverWait(driver, 40);
-		 WebElement clickAdd = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='ant-btn ant-btn-primary']"))); 
-		 ((JavascriptExecutor)driver).executeScript("arguments[0].click();", clickAdd);
-		 
 		
 	}
 }
