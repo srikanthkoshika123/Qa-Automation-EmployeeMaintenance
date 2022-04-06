@@ -20,7 +20,7 @@ public class TC_C33388 extends TC_BaseClass {
 		financial.referenceViewDropdown();
 		financial.addConfigure();
 		financial.Delete();
-		financial.retryingFindClick();
+		//financial.retryingFindClick();
 		financial.AddNew();
 		financial.selectReferenceDataSet();
 		financial.DeletingAddNew();

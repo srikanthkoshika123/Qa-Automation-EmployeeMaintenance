@@ -174,8 +174,8 @@ public class C27509 extends TC_BaseClass {
 		WebDriverWait wait3 = new WebDriverWait(driver, 120);
 		WebElement market = wait3.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div/div/div[1]/div/div[1]/div/ul/li[2]")));
-		Thread.sleep(6000);
-		market.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", market);
+		
 		WebDriverWait wait = new WebDriverWait(driver, 120);
 		WebElement mg = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='Market Groups']")));
