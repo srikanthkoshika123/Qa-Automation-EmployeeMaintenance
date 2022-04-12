@@ -28,7 +28,7 @@ public class EmployeeMaintenance extends TC_BaseClass {
 	WebElement unifocus;
 	@FindBy(xpath="//span[contains(text(),'Administration')]")
     WebElement adminstration;
-	@FindBy(xpath="//*[@id=\"MOST_USED_APPS$Menu\"]/li[1]")
+	@FindBy(xpath="(//li[@title='Employee Maintenance'])[2]")
 	WebElement employeeMaintenance;
 	@FindBy(xpath="//span[text()='Labor']")
     WebElement labor;

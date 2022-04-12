@@ -3,50 +3,41 @@ package com.pack.testCases;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.pack.loginPages.EmployeeMaintenance;
 import com.pack.loginPages.C27428;
-import com.pack.loginPages.C27504;
 import com.pack.utils.XLUtils;
 
 import recordingTests.ScreenRecorderUtil;
 
-public class TC_C27504 extends TC_BaseClass{
-	@SuppressWarnings("deprecation")
+@SuppressWarnings("deprecation")
+public class TC_C27428 extends TC_BaseClass {
 	@Test(dataProvider="loginPage")
-	public void tANDa(String url, String partnerCode, String loginas, String Password,String dbModel,String db,String dbName,String module) throws  Exception {
-		ScreenRecorderUtil.startRecord("TandA");
-	    driver.get(url);
+	public void loginTest(String url, String partnerCode, String loginas, String Password,String dbModel,String db,String dbName,String module)
+			throws Exception {
+		ScreenRecorderUtil.startRecord("loginPage");
+		driver.get(url);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 C27504 tANDa=new C27504(driver);
+		C27428 lp = new C27428(driver);
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-		tANDa.setPartnerCode(partnerCode);
-		tANDa.clickNext();
+		lp.setPartnerCode(partnerCode);
+		lp.clickNext();
 		logger.info("enter user name");
-		tANDa.setUserName(loginas);
+		lp.setUserName(loginas);
 		logger.info("password entered");
-		tANDa.setPassWord(Password);
+		lp.setPassWord(Password);
 		Thread.sleep(4000);
-		tANDa.clickSignIn(dbModel);
+		lp.clickSignIn(dbModel);
 		logger.info("signin clicked");
-		tANDa.selectDataBase(db,dbName,module);
-	    tANDa.clickUnifocus();
-	    tANDa.clickReviewPayPeriod();
-	    tANDa.approveShifts();
-	    tANDa.retryingFindClick();
-	    tANDa.reviewTimeCard();
-	    tANDa.whoIsInOut();
-	    tANDa.clickAttendancePointsandEvents();
-	    tANDa.clickBenefits();
-	    tANDa.clickEnterEarnings();
-	    tANDa.clickHolidayPay();
-	    tANDa.clickPunchImageReview();
-	    tANDa.clickApproveEarnings();
-	   
-}
+		lp.selectDataBase(db,dbName,module);
+
+	}
+
 	@DataProvider(name = "loginPage")
 	String[][] getData() throws IOException {
 		String path = System.getProperty("user.dir")+"/src/test/java/com/pack/testData/AutoLoginInfoCase.xlsx";

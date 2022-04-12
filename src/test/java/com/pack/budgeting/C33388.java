@@ -317,7 +317,7 @@ public class C33388 extends TC_BaseClass {
 
 		WebDriverWait wait15 = new WebDriverWait(driver, 40);
 		WebElement delete = wait15.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"/html/body/div[5]/div/div[2]/div/div[2]/div[2]/section/div/div[1]/div/div/div/div/span/button")));
+				"(//button[@class='ant-btn ant-btn-icon-only'])[2]")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", delete);
 
 		WebDriverWait wait13 = new WebDriverWait(driver, 120);
@@ -365,8 +365,8 @@ public class C33388 extends TC_BaseClass {
 		}
 	}
 
-	public void BudgetConfiguration() {
-
+	public void BudgetConfiguration() throws InterruptedException {
+       Thread.sleep(4000);
 		WebDriverWait wait15 = new WebDriverWait(driver, 120);
 		WebElement bc = wait15.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Budget Configuration']")));
@@ -378,33 +378,13 @@ public class C33388 extends TC_BaseClass {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", budgetConfiguration);
 		driver.switchTo().activeElement();
 		List<WebElement> e = driver.findElements(By.xpath(
-				"//ul[@class='ant-select-dropdown-menu  ant-select-dropdown-menu-root ant-select-dropdown-menu-vertical']/li"));
+				"//ul[@id='config-sub-menu$Menu']/li"));
 		int itemCount = e.size();
 
 		for (int i = 0; i < itemCount; i++) {
 			System.out.println(e.get(i).getText());
 		}
-
-		WebDriverWait wait13 = new WebDriverWait(driver, 120);
-		WebElement c = wait13.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Charts']")));
-		String charts = c.getText();
-		System.out.println(charts);
-		Assert.assertEquals("Charts", charts);
-
-		WebDriverWait wait14 = new WebDriverWait(driver, 120);
-		WebElement bs = wait14
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Budget Structure']")));
-		String budgetstructure = bs.getText();
-		System.out.println(budgetstructure);
-		Assert.assertEquals("Budget Structure", budgetstructure);
-
-		WebDriverWait wait19 = new WebDriverWait(driver, 120);
-		WebElement fe = wait19.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Full Time Equivalent']")));
-		String fulltimeequivalent = fe.getText();
-		System.out.println(fulltimeequivalent);
-		Assert.assertEquals("Full Time Equivalent", fulltimeequivalent);
-
+		
 	}
 
 	public void BudgetUtilities() {

@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import com.pack.loginPages.C27427;
 import com.pack.loginPages.EmployeeMaintenance;
-import com.pack.loginPages.LoginPage;
+import com.pack.loginPages.C27428;
 import com.pack.utils.XLUtils;
 
 import recordingTests.ScreenRecorderUtil;
@@ -18,17 +18,31 @@ import recordingTests.ScreenRecorderUtil;
 public class TC_C27427 extends TC_BaseClass {
 
 	@Test(dataProvider = "AddEmpData")
-	public void addNewEmployee(String eid, String display, String first, String middle, String last, String Email,
-			String hire, String sen, String wc, String tip, String job, String jobName, String jdate, String jrank,
-			String edate, String payType, String hourly, String wch, String ch, String annual, String se, String sar,
-			String piece) throws Exception {
+	public void addNewEmployee(String url, String partnerCode, String loginas, String Password, String dbModel,
+			String db, String dbName, String module, String eid, String display, String first, String middle,
+			String last, String Email, String hire, String sen, String wc, String tip, String job, String jobName,
+			String jdate, String jrank, String edate, String payType, String hourly, String wch, String ch,
+			String annual, String se, String sar, String piece) throws Exception {
 		ScreenRecorderUtil.startRecord("C27427");
+		driver.get(url);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		C27427 emp = new C27427(driver);
+		emp.setPartnerCode(partnerCode);
+		emp.clickNext();
+		logger.info("enter user name");
+		emp.setUserName(loginas);
+		logger.info("password entered");
+		emp.setPassWord(Password);
+		Thread.sleep(4000);
+		emp.clickSignIn(dbModel);
+		logger.info("signin clicked");
+		emp.selectDataBase(db, dbName, module);
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		EmployeeMaintenance employeemaintenance = new EmployeeMaintenance(driver);
 		employeemaintenance.clickUnifocus();
 		employeemaintenance.getselect_List();
 		driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
-		C27427 emp = new C27427(driver);
 		emp.switchFrame();
 		emp.addNewemployee(eid, display, first, middle, last, Email, hire, sen);
 		emp.selectWorkClass(wc);
