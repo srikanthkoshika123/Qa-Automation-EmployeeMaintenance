@@ -240,9 +240,6 @@ public class C27504 extends TC_BaseClass {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@title='Enter Earnings']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", enterEarnings);
 		driver.switchTo().frame(frame);
-		WebElement tipsDeclared = driver.findElement(By.xpath("//div[text()='T - Tips Declared (D)']"));
-		String td = tipsDeclared.getText();
-		System.out.println(td);
 		WebElement filters = driver.findElement(By.xpath("//span[text()='Filters']"));
 		String filter = filters.getText();
 		System.out.println(filter);
