@@ -85,10 +85,10 @@ public class C33388 extends TC_BaseClass {
 		WebElement clickDB = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//button[@class='ant-btn database-chooser-button singularity-button-no-box-shadow ant-btn-primary']")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickDB);
-		WebDriverWait wait = new WebDriverWait(driver, 40);
+		/*WebDriverWait wait = new WebDriverWait(driver, 40);
 		WebElement DB = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//div[text()='"+db+"']")));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", DB);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", DB);*/
 		WebDriverWait wait2 = new WebDriverWait(driver, 40);
 		WebElement doral = wait2.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//div[normalize-space()='"+dbName+"']")));
